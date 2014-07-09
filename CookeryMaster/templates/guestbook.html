@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+
+<div class="container col-md-10 col-md-offset-1">
+	<div class="well">
+		<h1 >Guest Book</h1>
+		{% for message in message_list %}
+			<div class="panel panel-default">
+				<!-- Default panel contents -->
+				<div class="panel-heading">{{ message.title }}</div>
+				<div class="panel-body">
+					<p>{{ message.content }}</p>
+					<!-- TODO: Add a link to ditaile of the author -->
+					<p>{{ message.user.user.username }}</p>
+				</div>
+					<!-- List group -->
+					<ul class="list-group">
+						<li class="list-group-item">Reply</li>
+					</ul>
+			</div>
+		{% empty %}
+			<h3>has no message</h3>
+		{% endfor %}
+	</div>
+	{% if username %}
+	<div class="well">
+		<form method="post" role="form">
+			{% csrf_token %}
+			<div class="form-group">
+				<input type="text" placeholder="Title" required name="title" class="form-control">
+			</div>
+			<div class="form-group">
+				<textarea class="form-control" rows="5" placeholder="Input what you thought" required name="content"></textarea>
+			</div>
+			<div class="row">
+				<div class="form-group">
+					<div class="col-sm-1 col-sm-offset-4">
+						<input type="submit" class="btn btn-info" value="submit">
+					</div>
+					<div class="col-sm-1 col-sm-offset-1">
+						<input type="reset" class="btn btn-danger" value="reset">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	{% endif %}
+</div>
+
+{% endblock %}
