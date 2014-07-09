@@ -8,28 +8,29 @@ class MyUser(models.Model):
 	def __unicode__(self):
 		return user.username
 
-class Restaurant(models.Model):
+class School(models.Model):
 	name = models.CharField(max_length = 128)
-	location = models.CharField(max_length = 512)
 	admin = models.OneToOneField(MyUser)
 
 	def __unicode__(self):
 		return self.name
 
-class Floor(models.Model):
-	name = models.CharField(max_length = 16)
-	restaurant = models.ForeignKey(Restaurant)
-
-	def __unicode__(self):
-		return restaurant.name + '-' + name
-
-class Window(models.Model):
-	name = models.CharField(max_length = 64)
-	Floor = models.ForeignKey(Floor)
+class Restaurant(models.Model):
+	name = models.CharField(max_length = 128)
+	School = models.ForeignKey(School)
 	admin = models.OneToOneField(MyUser)
 
 	def __unicode__(self):
-		return Floor.restaurant.name + '-' + Floor.name + '-' + name
+		return self.name
+
+class Window(models.Model):
+	name = models.CharField(max_length = 64)
+	floor = models.IntegerField()
+	restaurant = models.ForeignKey(Restaurant)
+	admin = models.OneToOneField(MyUser)
+
+	def __unicode__(self):
+		return self.name
 
 class Dish(models.Model):
 	name = models.CharField(max_length = 64)
@@ -37,4 +38,3 @@ class Dish(models.Model):
 
 	def __unicode__(self):
 		return name
-
