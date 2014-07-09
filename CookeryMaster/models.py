@@ -2,10 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+class MyUser(models.Model):
+	user = models.OneToOneField(User)
+	def __unicode__(self):
+		return user.username
+
 class Restaurant(models.Model):
 	name = models.CharField(max_length = 128)
 	location = models.CharField(max_length = 512)
-	admin = OneToOneField(MyUser)
+	admin = models.OneToOneField(MyUser)
 
 	def __unicode__(self):
 		return self.name
@@ -27,13 +33,8 @@ class Window(models.Model):
 
 class Dish(models.Model):
 	name = models.CharField(max_length = 64)
-	window = ForeignKey(Window)
+	window = models.ForeignKey(Window)
 
 	def __unicode__(self):
 		return name
 
-class MyUser(models.Model):
-	user = models.OneToOneField(User)
-
-	def __unicode__(self):
-		return user.username

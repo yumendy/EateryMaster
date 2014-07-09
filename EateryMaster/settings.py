@@ -1,5 +1,5 @@
 """
-Django settings for EateryMasterr project.
+Django settings for EateryMaster project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'CookeryMester',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -47,9 +48,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'EateryMasterr.urls'
+ROOT_URLCONF = 'EateryMaster.urls'
 
-WSGI_APPLICATION = 'EateryMasterr.wsgi.application'
+WSGI_APPLICATION = 'EateryMaster.wsgi.application'
 
 
 # Database
@@ -58,7 +59,7 @@ WSGI_APPLICATION = 'EateryMasterr.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'eatery.db'),
     }
 }
 
