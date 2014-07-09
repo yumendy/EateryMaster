@@ -1,13 +1,97 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 {% block title %}EateryMaster{% endblock %}
 
 {% block content %}
 
 <div class="container">
-	<article class="col-md-8 col-md-offset-2">
-		<h1>Here is the index</h1>
-	</article>
+
+	<!-- left		-->
+	<div class="contsiner col-md-8">
+		<div class="row">
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				</ol>
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox">
+					<div class="item active">
+						<img src="{% static "img/01.png" %}" alt="01">
+						<div class="carousel-caption">
+							<h3>first</h3>
+							<p>first</p>
+						</div>
+					</div>
+					<div class="item">
+						<img src="{% static "img/02.png" %}" alt="02">
+						<div class="carousel-caption">
+							<h3>second</h3>
+							<p>second</p>
+						</div>
+					</div>
+					<div class="item">
+						<img src="{% static "img/03.png" %}" alt="03">
+						<div class="carousel-caption">
+							<h3>third</h3>
+							<p>third</p>
+						</div>
+					</div>
+				</div>
+				<!-- Controls -->
+				<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+				</a>
+				<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</a>
+			</div>
+		</div>
+		<div class="row" style="margin-top:40px;">
+			<div class="well">
+				<h3>最新点评</h3>
+				<div class="list-group">
+					<a href="#" class="list-group-item">
+						<h4 class="list-group-item-heading">评论标题</h4>
+						<p class="list-group-item-text">评论内容</p>
+					</a>
+				</div>
+				<div class="list-group">
+					<a href="#" class="list-group-item">
+						<h4 class="list-group-item-heading">评论标题</h4>
+						<p class="list-group-item-text">评论内容</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- right -->
+	<div class="container col-md-4">
+		<div class="well">
+			<p>我是网站公告</p>
+			<p>test</p>
+		</div>
+		<div class="well">
+			<ul class="list-group">
+				<h4 class="list-group-item-heading">School</h4>
+				<li class="list-group-item">Restaurant</li>
+				<li class="list-group-item">Restaurant</li>
+				<li class="list-group-item">Restaurant</li>
+				<li class="list-group-item">Restaurant</li>
+				<li class="list-group-item">Restaurant</li>
+			</ul>
+			<ul class="list-group">
+				<h4 class="list-group-item-heading">School</h4>
+				<li class="list-group-item">Restaurant</li>
+				<li class="list-group-item">Restaurant</li>
+				<li class="list-group-item">Restaurant</li>
+				<li class="list-group-item">Restaurant</li>
+				<li class="list-group-item">Restaurant</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
 {% endblock %}

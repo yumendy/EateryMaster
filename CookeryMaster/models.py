@@ -35,6 +35,6 @@ class Window(models.Model):
 class Dish(models.Model):
 	name = models.CharField(max_length = 64)
 	window = models.ForeignKey(Window)
-
+	
 	def __unicode__(self):
 		return name
