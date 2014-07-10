@@ -7,7 +7,7 @@ class MyUser(models.Model):
 	user = models.OneToOneField(User)
 	permission = models.IntegerField()
 	def __unicode__(self):
-		return user.username
+		return self.user.username
 
 class School(models.Model):
 	name = models.CharField(max_length = 128)
@@ -38,7 +38,7 @@ class Dish(models.Model):
 	window = models.ForeignKey(Window)
 	
 	def __unicode__(self):
-		return name
+		return self.name
 
 class Message(models.Model):
 	title = models.CharField(max_length = 50)
@@ -47,7 +47,7 @@ class Message(models.Model):
 	create_datetime = models.DateTimeField(auto_now = True)
 
 	def __unicode__(self):
-		return title
+		return self.title
 
 class Reply(models.Model):
 	content = models.CharField(max_length = 200)
@@ -56,4 +56,4 @@ class Reply(models.Model):
 	create_datetime = models.DateTimeField(auto_now = True)
 
 	def __unicode__(self):
-		return content
+		return self.content

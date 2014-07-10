@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}About{% endblock %}
+{% block title %}GuestBook{% endblock %}
 
 {% block content %}
 
@@ -14,12 +14,19 @@
 				<div class="panel-body">
 					<p>{{ message.content }}</p>
 					<!-- TODO: Add a link to ditaile of the author -->
-					<p>{{ message.user.user.username }}</p>
+					<p class="text-right">{{ message.user.user.username }}</p>
 				</div>
+					{% if message.reply_set.all %}
 					<!-- List group -->
 					<ul class="list-group">
-						<li class="list-group-item">Reply</li>
+						{% for re in message.reply_set.all %}
+						<li class="list-group-item">
+							<h4>{{re.content}}</h4>
+							<p class="text-right">{{ re.user.user.username }}</p>
+						</li>
+						{% endfor %}
 					</ul>
+					{% endif %}
 			</div>
 		{% empty %}
 			<h3>has no message</h3>
