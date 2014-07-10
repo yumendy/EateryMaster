@@ -3,3 +3,23 @@
 *.pyc
 
 CookeryMaster/models.pyc
+
+.idea/.name
+
+.idea/vcs.xml
+
+.idea/workspace.xml
+
+.idea/scopes/scope_settings.xml
+
+.idea/misc.xml
+
+.idea/modules.xml
+
+.idea/encodings.xml
+
+.idea/EateryMaster.iml
+
+.idea/dataSources.xml
+
+.idea/dataSources.ids
