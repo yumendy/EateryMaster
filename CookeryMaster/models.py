@@ -18,7 +18,7 @@ class School(models.Model):
 
 class Restaurant(models.Model):
 	name = models.CharField(max_length = 128)
-	School = models.ForeignKey(School)
+	school = models.ForeignKey(School)
 	admin = models.OneToOneField(MyUser)
 
 	def __unicode__(self):
@@ -36,7 +36,12 @@ class Window(models.Model):
 class Dish(models.Model):
 	name = models.CharField(max_length = 64)
 	window = models.ForeignKey(Window)
-	
+	energy = models.FloatField() #kcal
+	fat = models.FloatField() #gram
+	carbohydrate = models.FloatField() #gram
+	vb1 = models.FloatField() #mg
+	vb2 = models.FloatField() #ug
+
 	def __unicode__(self):
 		return self.name
 
@@ -54,6 +59,19 @@ class Reply(models.Model):
 	user = models.ForeignKey(MyUser)
 	message = models.ForeignKey(Message)
 	create_datetime = models.DateTimeField(auto_now = True)
+
+	def __unicode__(self):
+		return self.content
+
+class Assessment(models.Model):
+	content = models.CharField(max_length = 500)
+	taste = models.IntegerField()
+	service = models.IntegerField()
+	price = models.IntegerField()
+	level = models.IntegerField()
+	dish = models.ForeignKey(Dish)
+	user = models.ForeignKey(MyUser)
+	create_datetime = models.DateTimeField()
 
 	def __unicode__(self):
 		return self.content
