@@ -33,6 +33,7 @@ def signup(req):
 													)
 				newuser.save()
 				new_myuser = MyUser(user = newuser, \
+									permission = 1, \
 									)
 				new_myuser.save()
 				status = 'success'
@@ -74,8 +75,7 @@ def guestbook(req):
 		message = Message()
 		message.title = post['title']
 		message.content = post['content']
-		user_list = MyUser.objects.all()
-		message.user = user_list.filter(user__username=username)[0]
+		message.user = MyUser.objects.filter(user__username=username)[0]
 		message.save()
 	message_list = Message.objects.all()
 	content = {'username':username, 'message_list':message_list}
@@ -85,3 +85,24 @@ def about(req):
 	username = req.session.get('username','')
 	content = {'username':username,'noheader':False}
 	return render_to_response('about.html',content ,context_instance = RequestContext(req))
+
+def reply(req):
+	status = ''
+	can_reply = True
+	username = req.session.get('username','')
+	Id = req.GET["id"]
+	message = Message.objects.filter(pk = Id)[0]
+	user = MyUser.objects.filter(user__username = username)[0]
+	if user.permission < 2:
+		status = 'no_permission'
+		can_reply = False
+	if req.POST:
+		post = req.POST
+		re = Reply( content = post['reply_content'], \
+					user = user, \
+					message = message, \
+			)
+		re.save()
+		status = 'success'
+	content = {'username':username,'noheader':True,'message':message,'status':status,'can_reply':can_reply}
+	return render_to_response('reply.html',content,context_instance = RequestContext(req))

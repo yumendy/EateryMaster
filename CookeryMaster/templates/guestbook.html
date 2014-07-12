@@ -14,7 +14,10 @@
 				<div class="panel-body">
 					<h3>{{ message.content }}</h3>
 					<!-- TODO: Add a link to ditaile of the author -->
-					<p class="text-right">{{ message.user.user.username }}</p>
+					<p class="text-right">{{ message.user.user.username }}&nbsp;&nbsp;<small>{{ message.create_datetime|date:"Y-m-d H:i:s" }}</small></p>
+						<div class="col-sm-1 col-sm-offset-10">
+							<a type="button" class="btn btn-primary btn-sm" href="/reply/?id={{message.id}}">Reply</a>
+						</div>
 				</div>
 					{% if message.reply_set.all %}
 					<!-- List group -->
@@ -22,7 +25,7 @@
 						{% for re in message.reply_set.all %}
 						<li class="list-group-item">
 							<h5>Re:{{re.content}}</h5>
-							<p class="text-right">{{ re.user.user.username }}</p>
+							<p class="text-right">{{ re.user.user.username }}&nbsp;&nbsp;<small>{{ re.create_datetime|date:"Y-m-d H:i:s" }}</small></p>
 						</li>
 						{% endfor %}
 					</ul>

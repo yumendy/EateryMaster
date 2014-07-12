@@ -15,4 +15,5 @@ urlpatterns = patterns('',
     url(r'^logout/',views.logout),
     url(r'^about/',views.about),
     url(r'^guestbook/',views.guestbook),
+    url(r'^reply/',views.reply),
 )
