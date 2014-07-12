@@ -18,26 +18,26 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">食堂达人</a>
+				<a class="navbar-brand" href="/">EateryMaster</a>
 			</div>
 			<div class="collapse navbar-collapse navbar-example" >
 				<ul class="nav navbar-nav">
-		            <li><a href="/">主页</a></li>
-		            <li><a href="#">经验</a></li>
-		            <li><a href="#">点评</a></li>
+		            <li><a href="/">Home</a></li>
+		            <li><a href="#">jingyan</a></li>
+		            <li><a href="#">dianping</a></li>
 		            {% if username %}
-		            	<li><a href="#">推荐</a></li>
+		            	<li><a href="#">tuijian</a></li>
 		            {% endif %}
-		            <li><a href="/guestbook/">留言板</a></li>
-		            <li><a href="/about/">关于</a></li>
+		            <li><a href="/guestbook/">GuestBook</a></li>
+		            <li><a href="/about/">About</a></li>
 	        	</ul>
 				<ul class="nav navbar-nav navbar-right" style="margin-right:50px;">
 					{% if username %}
-						<li><p class="navbar-text">欢迎&nbsp; <span style="color:white">{{username}}</span></p></li>
-						<li><a href="/logout/">登出</a></li>
+						<li><p class="navbar-text">welcome&nbsp; <span style="color:white">{{username}}</span></p></li>
+						<li><a href="/logout/">log out</a></li>
 					{% else %}
-						<li><a href="/signup/">注册</a></li>
-						<li><a href="/login/">登录</a></li>
+						<li><a href="/signup/">sign up</a></li>
+						<li><a href="/login/">log in</a></li>
 					{% endif %}
 				</ul>
 			</div>
@@ -47,8 +47,8 @@
 		{% if not noheader %}
 		<header class="jumbotron subhead" id="overview" style="background-color:#000;color:#fff;">
 			<div class="container">
-				<h1>HIT 食堂达人</h1>
-				<p>&emsp;&emsp;我们的食堂我们做主！</p>
+				<h1>HIT EateryMaster</h1>
+				<p>&emsp;&emsp;Welcome</p>
 			</div>
 		</header>
 		{% endif %}

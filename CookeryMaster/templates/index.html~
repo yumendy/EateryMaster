@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}食堂达人{% endblock %}
+{% block title %}EateryMaster{% endblock %}
 
 {% block content %}
 

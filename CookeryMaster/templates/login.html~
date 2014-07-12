@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}登录{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block content %}
 
@@ -14,17 +14,17 @@
 		{% endif %}
 		<form role="form" class="form-horizontal" method="post">
 			{% csrf_token %}
-			<h2 class="form-signin-heading" align="center">请登录</h2>
+			<h2 class="form-signin-heading" align="center">Please Login</h2>
 
 			<div class="form-group">
-				<label for="id_user_name" class="col-sm-3 control-label">用户名：</label>
+				<label for="id_user_name" class="col-sm-3 control-label">User Name:</label>
 				<div class="col-sm-9">
 					<input type="text" class="form-control" id="id_user_name" placeholder="user name" required name="username" autofocus>
 				</div>	
 			</div>
 			
 			<div class="form-group">
-				<label for="id_passwd" class="col-sm-3 control-label">密码：</label>
+				<label for="id_passwd" class="col-sm-3 control-label">Password:</label>
 				<div class="col-sm-9">
 					<input type="password" class="form-control" placeholder="Password" required name="passwd" id="id_passwd">
 				</div>	
@@ -32,7 +32,7 @@
 
 			<div class="form-group">
 				<div class="col-sm-6 col-sm-offset-3">
-					<button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Login in</button>
 				</div>
 			</div>
 		</form>

@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}注册{% endblock %}
 
 {% block content %}
 
 <div class="container" style="margin-top:50px">
 
-	<div class="col-md-6 col-md-offset-3">
+	<div class="col-sm-6 col-md-offset-3">
 		{% if status %}
 			<div class="well">
 				<h2 style="font-color:red">{{ status }}</h2>
@@ -14,31 +14,31 @@
 		{% endif %}
 		<form role="form" class="form-horizontal" method="post">
 			{% csrf_token %}
-			<h2 class="form-signin-heading" align="center">Please sign up</h2>
+			<h2 class="form-signin-heading" align="center">请注册</h2>
 
 			<div class="form-group">
-				<label for="id_user_name" class="col-sm-3 control-label">User Name:</label>
+				<label for="id_user_name" class="col-sm-3 control-label">用户名：</label>
 				<div class="col-sm-9">
 					<input type="text" class="form-control" id="id_user_name" placeholder="user name" required name="username" autofocus>
 				</div>	
 			</div>
 			
 			<div class="form-group">
-				<label for="id_passwd" class="col-sm-3 control-label">Password:</label>
+				<label for="id_passwd" class="col-sm-3 control-label">密码：</label>
 				<div class="col-sm-9">
 					<input type="password" class="form-control" placeholder="Password" required name="passwd" id="id_passwd">
 				</div>	
 			</div>
 
 			<div class="form-group">
-				<label for="id_repasswd" class="col-sm-3 control-label">RePassword:</label>
+				<label for="id_repasswd" class="col-sm-3 control-label">重复密码：</label>
 				<div class="col-sm-9">
 					<input type="password" class="form-control" placeholder="RePassword" required name="repasswd" id="id_repasswd">
 				</div>	
 			</div>
 
 			<div class="form-group">
-				<label for="id_email" class="col-sm-3 control-label">E-mail:</label>
+				<label for="id_email" class="col-sm-3 control-label">电子邮件：</label>
 				<div class="col-sm-9">
 					<input type="email" class="form-control" placeholder="Email address" required name="email" id="id_email">
 				</div>	
@@ -46,7 +46,7 @@
 			
 			<div class="form-group">
 				<div class="col-sm-6 col-sm-offset-3">
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+					<button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
 				</div>
 			</div>
 		</form>

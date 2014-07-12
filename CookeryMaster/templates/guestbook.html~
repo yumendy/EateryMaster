@@ -40,10 +40,10 @@
 		<form method="post" role="form">
 			{% csrf_token %}
 			<div class="form-group">
-				<input type="text" placeholder="标题" required name="title" class="form-control">
+				<input type="text" placeholder="Title" required name="title" class="form-control">
 			</div>
 			<div class="form-group">
-				<textarea class="form-control" rows="5" placeholder="留下你此刻的想法。。" required name="content"></textarea>
+				<textarea class="form-control" rows="5" placeholder="Input what you thought" required name="content"></textarea>
 			</div>
 			<div class="row">
 				<div class="form-group">
