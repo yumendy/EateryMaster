@@ -20,19 +20,19 @@
 		{% if can_add %}
 		<form role="form" class="form-horizontal" method="post">
 			{% csrf_token %}
-			<h2 class="form-signin-heading" align="center">add_dish</h2>
-			<div class="form-group">
-				<label for="id_reply_content" class="col-sm-1 control-label">name:</label>
-				<div class="col-sm-11">
-					<textarea class="form-control" rows="3" name="reply_content" id="id_reply_content" placeholder="回复" required autofocus></textarea>
-				</div>	
-			</div>
-			<div class="form-group">
-				<div class="col-sm-2 col-sm-offset-5">
-					<button class="btn btn btn-primary btn-block" type="submit">回复</button>
+				<h2 class="form-signin-heading" align="center">add_dish</h2>
+				<div class="form-group">
+					<label for="id_reply_content" class="col-sm-1 control-label">name:</label>
+					<div class="col-sm-11">
+						<textarea class="form-control" rows="3" name="reply_content" id="id_reply_content" placeholder="回复" required autofocus></textarea>
+					</div>	
 				</div>
-			</div>
-		</form>
+				<div class="form-group">
+					<div class="col-sm-2 col-sm-offset-5">
+						<button class="btn btn btn-primary btn-block" type="submit">回复</button>
+					</div>
+				</div>
+			</form>
 		{% endif %}
 	</div>
 </div>

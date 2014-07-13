@@ -11,8 +11,8 @@ from django.contrib.auth.models import User
 # Create your views here.
 def index(req):
 	username = req.session.get('username','')
-	schools = School.objects.all()
-	content = {'username':username,'schools':schools}
+	school_list = School.objects.all()
+	content = {'username':username,'school_list':school_list}
 	return render_to_response('index.html',content,context_instance = RequestContext(req))
 
 def signup(req):

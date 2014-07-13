@@ -18,33 +18,32 @@
 			</div>
 		{% endif %}
 		{% if can_add %}
-		<form role="form" class="form-horizontal" method="post">
-			{% csrf_token %}
-			<h2 class="form-signin-heading" align="center">add restaurant</h2>
-			<div class="form-group">
-				<label for="id_name" class="col-sm-1 control-label">name:</label>
-				<div class="col-sm-11">
-					<input type="text" class="form-control" name="name" id="id_name" pleaseholder="name" required autofocus>
-				</div>	
-			</div>
-			<!-- TODO:change this to a choice list -->
-			<div class="form-group">
-				<label for="id_school" class="col-sm-1 control-label">school:</label>
-				<div class="col-sm-11">
-					<select class="form-control" name="school" id="id_school">
-						{% for s in schools %}
-							<option value="{{ s.name }}">{{ s.name }}</option>
-						{% endfor %}
-					</select>
-					<!-- <input type="text" class="form-control" name="school" id="id_school" pleaseholder="school" required> -->
-				</div>	
-			</div>
-			<div class="form-group">
-				<div class="col-sm-2 col-sm-offset-5">
-					<button class="btn btn btn-primary btn-block" type="submit">add</button>
+			<form role="form" class="form-horizontal" method="post">
+				{% csrf_token %}
+				<h2 class="form-signin-heading" align="center">add restaurant</h2>
+				<div class="form-group">
+					<label for="id_name" class="col-sm-1 control-label">name:</label>
+					<div class="col-sm-11">
+						<input type="text" class="form-control" name="name" id="id_name" pleaseholder="name" required autofocus>
+					</div>	
 				</div>
-			</div>
-		</form>
+				<!-- TODO:change this to a choice list -->
+				<div class="form-group">
+					<label for="id_school" class="col-sm-1 control-label">school:</label>
+					<div class="col-sm-11">
+						<select class="form-control" name="school" id="id_school">
+							{% for s in schools %}
+								<option value="{{ s.name }}">{{ s.name }}</option>
+							{% endfor %}
+						</select>
+					</div>	
+				</div>
+				<div class="form-group">
+					<div class="col-sm-2 col-sm-offset-5">
+						<button class="btn btn btn-primary btn-block" type="submit">add</button>
+					</div>
+				</div>
+			</form>
 		{% endif %}
 	</div>
 </div>

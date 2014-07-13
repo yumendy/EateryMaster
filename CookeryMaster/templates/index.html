@@ -74,22 +74,17 @@
 			<p>test</p>
 		</div>
 		<div class="well">
-			<ul class="list-group">
-				<h4 class="list-group-item-heading">School</h4>
-				<li class="list-group-item">Restaurant</li>
-				<li class="list-group-item">Restaurant</li>
-				<li class="list-group-item">Restaurant</li>
-				<li class="list-group-item">Restaurant</li>
-				<li class="list-group-item">Restaurant</li>
-			</ul>
-			<ul class="list-group">
-				<h4 class="list-group-item-heading">School</h4>
-				<li class="list-group-item">Restaurant</li>
-				<li class="list-group-item">Restaurant</li>
-				<li class="list-group-item">Restaurant</li>
-				<li class="list-group-item">Restaurant</li>
-				<li class="list-group-item">Restaurant</li>
-			</ul>
+			{% for school in school_list %}
+				<ul class="list-group">
+					<h4 class="list-group-item-heading">{{ school.name }}</h4>
+					{% for rest in school.restaurant_set.all %}
+						<!-- TODO: add link to ditial page -->
+						<li class="list-group-item">{{ rest.name }}</li>
+					{% empty %}
+						<li class="list-group-item">has no restaurant</li>
+					{% endfor %}
+				</ul>
+			{% endfor %}
 		</div>
 	</div>
 </div>
