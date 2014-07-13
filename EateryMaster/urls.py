@@ -19,6 +19,6 @@ urlpatterns = patterns('',
     url(r'^guestbook/$',views.guestbook),
     url(r'^guestbook/reply/$',views.reply),
     url(r'^addrestaurant/$',views.addrestaurant),
-    url(r'^adddish/$',views.adddish),
+    url(r'^addwindow/$',views.addwindow),
     url(r'^image/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIAS_PATH}),
 )

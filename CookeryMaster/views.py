@@ -129,7 +129,7 @@ def addrestaurant(req):
 		can_add = False
 	if req.POST:
 		post = req.POST
-		new_restaurant = Restaurant( name = post['name'], \
+		new_restaurant = Restaurant(name = post['name'], \
 									admin = MyUser.objects.get(pk = post['admin']), \
 									school = School.objects.get(name = post['school']), \
 			)
@@ -142,15 +142,37 @@ def addwindow(req):
 	status = ''
 	can_add = True
 	username = req.session.get('username','')
-	schools = School.objects.all()
+	user_list = []
+	restaurant_list = []
 	try:
 		user = MyUser.objects.filter(user__username = username)[0]
 	except:
 		status = 'no_permission'
 		can_add = False
-		if user.permission < 4:
+	else:
+		if user.permission < 3:
 			status = 'no_permission'
 			can_add = False
+		else:
+			user_list = MyUser.objects.filter(permission = 2)
+			if user.permission == 3:
+				restaurant_list = Restaurant.objects.filter(admin = user)
+			elif user.permission == 4:
+				print user.school
+				restaurant_list = Restaurant.objects.filter(school = user.school)
+			else:
+				restaurant_list = Restaurant.objects.all()
+	if req.POST:
+		post = req.POST
+		new_window = Window(name = post['name'], \
+							floor = post['floor'], \
+							restaurant = Restaurant.objects.get(pk = post['restaurant']), \
+							admin = MyUser.objects.get(pk = post['admin']), \
+							)
+		new_window.save()
+		status = 'success'
+	content = {'username':username,'noheader':True,'status':status,'can_add':can_add,'user_list':user_list,'restaurant_list':restaurant_list}
+	return render_to_response('addwindow.html',content,context_instance = RequestContext(req))
 
 
 def adddish(req):

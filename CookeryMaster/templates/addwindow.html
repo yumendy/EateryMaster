@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}addwindow{% endblock %}
+
+{% block content %}
+
+<div class="container" style="margin-top:50px">
+
+	<div class="col-sm-8 col-sm-offset-2">
+		{% if status == 'no_permission' %}
+			<div class="well">
+				<h2 class="text-danger text-center">you have no permission to add window</h2>
+			</div>
+		{% elif status == 'success' %}
+			<div class="well">
+				<h2 class="text-success text-center">add succeed</h2>
+			</div>
+		{% endif %}
+		{% if can_add %}
+			<form role="form" class="form-horizontal" method="post">
+				{% csrf_token %}
+				<h2 class="form-signin-heading" align="center">add window</h2>
+				<div class="form-group">
+					<label for="id_name" class="col-sm-1 control-label">name:</label>
+					<div class="col-sm-11">
+						<input type="text" class="form-control" name="name" id="id_name" pleaseholder="name" required autofocus>
+					</div>	
+				</div>
+				<div class="form-group">
+					<label for="id_floor" class="col-sm-1 control-label">floor:</label>
+					<div class="col-sm-11">
+						<input type="text" class="form-control" name="floor" id="id_floor" pleaseholder="floor" required>
+					</div>	
+				</div>
+				<div class="form-group">
+					<label for="id_restaurant" class="col-sm-1 control-label">restaurant:</label>
+					<div class="col-sm-11">
+						<select class="form-control" name="restaurant" id="id_restaurant">
+							{% for r in restaurant_list %}
+								<option value="{{ r.id }}">{{ r.name }}</option>
+							{% endfor %}
+						</select>
+					</div>	
+				</div>
+				<div class="form-group">
+					<label for="id_admin" class="col-sm-1 control-label">admin:</label>
+					<div class="col-sm-11">
+						<select class="form-control" name="admin" id="id_admin">
+							{% for a in user_list %}
+								<option value="{{ a.id }}">{{ a.user.username }}</option>
+							{% endfor %}
+						</select>
+					</div>	
+				</div>
+				<div class="form-group">
+					<div class="col-sm-2 col-sm-offset-5">
+						<button class="btn btn btn-primary btn-block" type="submit">add</button>
+					</div>
+				</div>
+			</form>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}
