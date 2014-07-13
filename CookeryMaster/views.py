@@ -176,6 +176,36 @@ def addwindow(req):
 
 
 def adddish(req):
+	status = ''
+	can_add = True
+	window_list = []
 	username = req.session.get('username','')
-	c = {'username':username}
+	try:
+		user = MyUser.objects.filter(user__username = username)[0]
+	except:
+		status = 'no_permission'
+		can_add = False
+	else:
+		if user.permission == 5:
+			window_list = Window.objects.all()
+		elif user.permission == 4:
+			window_list = Window.objects.filter(restaurent__school = user.school)
+		elif user.permission == 3:
+			window_list = Window.objects.filter(restaurant = user.restaurant)
+		elif user.permission == 2:
+			window_list = Window.objects.filter(admin = user)
+		else:
+			status = 'no_permission'
+			can_add = False
+	if req.POST:
+		post = req.POST
+		new_dish = Dish(name = post['name'], \
+						window = Window.objects.get(pk = post['window']), \
+						energy = post['energy'], \
+						fat = post['fat'], \
+						carbohydrate = post['carbohydrate'], \
+						vb1 = post['vb1'], \
+						vb2 = post['vb2'], \
+						desc = post['desc'])
+	c = {'username':username,'noheader':True,'status':status,'can_add':can_add,'window_list':window_list}
 	return render_to_response('adddish.html',content,context_instance = RequestContext(req))

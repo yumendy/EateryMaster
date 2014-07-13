@@ -77,3 +77,19 @@ class Assessment(models.Model):
 
 	def __unicode__(self):
 		return self.content
+
+class News(models.Model):
+	user = models.ForeignKey(MyUser)
+	title = models.CharField(max_length = 64)
+	content = models.CharField(max_length = 512)
+	category = models.ForeignKey(Category)
+	time = models.DateTimeField(auto_now = True)
+
+	def __unicode__(self):
+		return self.title
+
+class Category(models.Model):
+	name = models.CharField(max_length = 32)
+
+	def __unicode__(self):
+		return self.name
