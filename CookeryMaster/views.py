@@ -11,7 +11,9 @@ from django.contrib.auth.models import User
 # Create your views here.
 def index(req):
 	username = req.session.get('username','')
-	return render_to_response('index.html',{'username':username},context_instance = RequestContext(req))
+	school_list = School.objects.all()
+	content = {'username':username,'school_list':school_list}
+	return render_to_response('index.html',content,context_instance = RequestContext(req))
 
 def signup(req):
 	if req.session.get('username',''):
@@ -75,7 +77,7 @@ def guestbook(req):
 		message = Message()
 		message.title = post['title']
 		message.content = post['content']
-		message.user = MyUser.objects.filter(user__username=username)[0]
+		message.user = MyUser.objects.get(user__username=username)
 		message.save()
 	message_list = Message.objects.all()
 	content = {'username':username, 'message_list':message_list}
@@ -91,9 +93,13 @@ def reply(req):
 	can_reply = True
 	username = req.session.get('username','')
 	Id = req.GET["id"]
-	message = Message.objects.filter(pk = Id)[0]
-	user = MyUser.objects.filter(user__username = username)[0]
-	if user.permission < 2:
+	message = Message.objects.get(pk = Id)
+	try:
+		user = MyUser.objects.get(user__username = username)
+		if user.permission < 2:
+			status = 'no_permission'
+			can_reply = False
+	except:
 		status = 'no_permission'
 		can_reply = False
 	if req.POST:
@@ -106,3 +112,70 @@ def reply(req):
 		status = 'success'
 	content = {'username':username,'noheader':True,'message':message,'status':status,'can_reply':can_reply}
 	return render_to_response('reply.html',content,context_instance = RequestContext(req))
+
+def addrestaurant(req):
+	status = ''
+	can_add = True
+	username = req.session.get('username','')
+	schools = School.objects.all()
+	user_list = MyUser.objects.filter(permission = 3)
+	try:
+		user = MyUser.objects.get(user__username = username)
+		if user.permission < 4:
+			status = 'no_permission'
+			can_add = False
+	except:
+		status = 'no_permission'
+		can_add = False
+	if req.POST:
+		post = req.POST
+		new_restaurant = Restaurant(name = post['name'], \
+									admin = MyUser.objects.get(pk = post['admin']), \
+									school = School.objects.get(name = post['school']), \
+			)
+		new_restaurant.save()
+		status = 'success'
+	content = {'username':username,'noheader':True,'status':status,'can_add':can_add,'schools':schools,'user_list':user_list}
+	return render_to_response('addrestaurant.html',content,context_instance = RequestContext(req))
+
+def addwindow(req):
+	status = ''
+	can_add = True
+	username = req.session.get('username','')
+	user_list = []
+	restaurant_list = []
+	try:
+		user = MyUser.objects.filter(user__username = username)[0]
+	except:
+		status = 'no_permission'
+		can_add = False
+	else:
+		if user.permission < 3:
+			status = 'no_permission'
+			can_add = False
+		else:
+			user_list = MyUser.objects.filter(permission = 2)
+			if user.permission == 3:
+				restaurant_list = Restaurant.objects.filter(admin = user)
+			elif user.permission == 4:
+				print user.school
+				restaurant_list = Restaurant.objects.filter(school = user.school)
+			else:
+				restaurant_list = Restaurant.objects.all()
+	if req.POST:
+		post = req.POST
+		new_window = Window(name = post['name'], \
+							floor = post['floor'], \
+							restaurant = Restaurant.objects.get(pk = post['restaurant']), \
+							admin = MyUser.objects.get(pk = post['admin']), \
+							)
+		new_window.save()
+		status = 'success'
+	content = {'username':username,'noheader':True,'status':status,'can_add':can_add,'user_list':user_list,'restaurant_list':restaurant_list}
+	return render_to_response('addwindow.html',content,context_instance = RequestContext(req))
+
+
+def adddish(req):
+	username = req.session.get('username','')
+	c = {'username':username}
+	return render_to_response('adddish.html',content,context_instance = RequestContext(req))

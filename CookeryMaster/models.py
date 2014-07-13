@@ -41,6 +41,8 @@ class Dish(models.Model):
 	carbohydrate = models.FloatField() #gram
 	vb1 = models.FloatField() #mg
 	vb2 = models.FloatField() #ug
+	desc = models.CharField(max_length = 500)
+	img = models.ImageField(upload_to= './image/')
 
 	def __unicode__(self):
 		return self.name
