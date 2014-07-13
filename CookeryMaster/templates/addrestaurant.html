@@ -27,13 +27,22 @@
 						<input type="text" class="form-control" name="name" id="id_name" pleaseholder="name" required autofocus>
 					</div>	
 				</div>
-				<!-- TODO:change this to a choice list -->
 				<div class="form-group">
 					<label for="id_school" class="col-sm-1 control-label">school:</label>
 					<div class="col-sm-11">
 						<select class="form-control" name="school" id="id_school">
 							{% for s in schools %}
 								<option value="{{ s.name }}">{{ s.name }}</option>
+							{% endfor %}
+						</select>
+					</div>	
+				</div>
+				<div class="form-group">
+					<label for="id_admin" class="col-sm-1 control-label">admin:</label>
+					<div class="col-sm-11">
+						<select class="form-control" name="admin" id="id_admin">
+							{% for a in user_list %}
+								<option value="{{ a.id }}">{{ a.user.username }}</option>
 							{% endfor %}
 						</select>
 					</div>	

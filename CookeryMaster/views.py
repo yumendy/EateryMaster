@@ -77,7 +77,7 @@ def guestbook(req):
 		message = Message()
 		message.title = post['title']
 		message.content = post['content']
-		message.user = MyUser.objects.filter(user__username=username)[0]
+		message.user = MyUser.objects.get(user__username=username)
 		message.save()
 	message_list = Message.objects.all()
 	content = {'username':username, 'message_list':message_list}
@@ -93,9 +93,9 @@ def reply(req):
 	can_reply = True
 	username = req.session.get('username','')
 	Id = req.GET["id"]
-	message = Message.objects.filter(pk = Id)[0]
+	message = Message.objects.get(pk = Id)
 	try:
-		user = MyUser.objects.filter(user__username = username)[0]
+		user = MyUser.objects.get(user__username = username)
 		if user.permission < 2:
 			status = 'no_permission'
 			can_reply = False
@@ -118,8 +118,9 @@ def addrestaurant(req):
 	can_add = True
 	username = req.session.get('username','')
 	schools = School.objects.all()
+	user_list = MyUser.objects.filter(permission = 3)
 	try:
-		user = MyUser.objects.filter(user__username = username)[0]
+		user = MyUser.objects.get(user__username = username)
 		if user.permission < 4:
 			status = 'no_permission'
 			can_add = False
@@ -129,15 +130,27 @@ def addrestaurant(req):
 	if req.POST:
 		post = req.POST
 		new_restaurant = Restaurant( name = post['name'], \
-									admin = user, \
-									school = School.objects.filter(name = post['school'])[0], \
+									admin = MyUser.objects.get(pk = post['admin']), \
+									school = School.objects.get(name = post['school']), \
 			)
 		new_restaurant.save()
 		status = 'success'
-	content = {'username':username,'noheader':True,'status':status,'can_add':can_add,'schools':schools}
+	content = {'username':username,'noheader':True,'status':status,'can_add':can_add,'schools':schools,'user_list':user_list}
 	return render_to_response('addrestaurant.html',content,context_instance = RequestContext(req))
 
-
+def addwindow(req):
+	status = ''
+	can_add = True
+	username = req.session.get('username','')
+	schools = School.objects.all()
+	try:
+		user = MyUser.objects.filter(user__username = username)[0]
+	except:
+		status = 'no_permission'
+		can_add = False
+		if user.permission < 4:
+			status = 'no_permission'
+			can_add = False
 
 
 def adddish(req):
