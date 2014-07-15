@@ -9,6 +9,9 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 
 # Create your views here.
+class ImgForm(forms.Form):
+	img = forms.ImageField()
+
 def index(req):
 	username = req.session.get('username','')
 	school_list = School.objects.all()
@@ -189,7 +192,7 @@ def adddish(req):
 		if user.permission == 5:
 			window_list = Window.objects.all()
 		elif user.permission == 4:
-			window_list = Window.objects.filter(restaurent__school = user.school)
+			window_list = Window.objects.filter(restaurant__school = user.school)
 		elif user.permission == 3:
 			window_list = Window.objects.filter(restaurant = user.restaurant)
 		elif user.permission == 2:
@@ -206,6 +209,13 @@ def adddish(req):
 						carbohydrate = post['carbohydrate'], \
 						vb1 = post['vb1'], \
 						vb2 = post['vb2'], \
-						desc = post['desc'])
-	c = {'username':username,'noheader':True,'status':status,'can_add':can_add,'window_list':window_list}
+						desc = post['desc'],\
+						)
+		if req.FILES:
+			uf = ImgForm(post,req.FILES)
+			if uf.is_valid():
+				new_dish.img = uf.cleaned_data['img']
+		new_dish.save()
+		status = 'success'
+	content = {'username':username,'noheader':True,'status':status,'can_add':can_add,'window_list':window_list}
 	return render_to_response('adddish.html',content,context_instance = RequestContext(req))

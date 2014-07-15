@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}AddDish{% endblock %}
+{% block title %}adddish{% endblock %}
 
 {% block content %}
 
@@ -9,27 +9,79 @@
 	<div class="col-sm-8 col-sm-offset-2">
 		{% if status == 'no_permission' %}
 			<div class="well">
-				<h2 class="text-danger text-center">你没有add权限！</h2>
+				<h2 class="text-danger text-center">you have no permission to add dish</h2>
 			</div>
 		{% elif status == 'success' %}
 			<div class="well">
-				<h2 class="text-success text-center">add成功！</h2>
-				<a href="/alldish/" type="buttom" class="btn btn-link">Return to the alldish</a>
+				<h2 class="text-success text-center">add succeed</h2>
+				<a href="/alldish/" type="buttom" class="btn btn-link">Return to all dish</a>
 			</div>
 		{% endif %}
 		{% if can_add %}
-		<form role="form" class="form-horizontal" method="post">
-			{% csrf_token %}
-				<h2 class="form-signin-heading" align="center">add_dish</h2>
+			<form role="form" class="form-horizontal" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<h2 class="form-signin-heading" align="center">add dish</h2>
 				<div class="form-group">
-					<label for="id_reply_content" class="col-sm-1 control-label">name:</label>
+					<label for="id_name" class="col-sm-1 control-label">name:</label>
 					<div class="col-sm-11">
-						<textarea class="form-control" rows="3" name="reply_content" id="id_reply_content" placeholder="回复" required autofocus></textarea>
+						<input type="text" class="form-control" name="name" id="id_name" pleaseholder="name" required autofocus>
 					</div>	
 				</div>
 				<div class="form-group">
+					<label for="id_window" class="col-sm-1 control-label">window:</label>
+					<div class="col-sm-11">
+						<select class="form-control" name="window" id="id_window">
+							{% for w in window_list %}
+								<option value="{{ w.id }}">{{ w.name }}</option>
+							{% endfor %}
+						</select>
+					</div>	
+				</div>
+				<div class="form-group">
+					<label for="id_energy" class="col-sm-1 control-label">energy:</label>
+					<div class="col-sm-11">
+						<input type="text" class="form-control" name="energy" id="id_energy" pleaseholder="energy" required>
+					</div>	
+				</div>
+				<div class="form-group">
+					<label for="id_fat" class="col-sm-1 control-label">fat:</label>
+					<div class="col-sm-11">
+						<input type="text" class="form-control" name="fat" id="id_fat" pleaseholder="fat" required>
+					</div>	
+				</div>
+				<div class="form-group">
+					<label for="id_carbohydrate" class="col-sm-1 control-label">carbohydrate:</label>
+					<div class="col-sm-11">
+						<input type="text" class="form-control" name="carbohydrate" id="id_carbohydrate" pleaseholder="carbohydrate" required>
+					</div>	
+				</div>
+				<div class="form-group">
+					<label for="id_vb1" class="col-sm-1 control-label">vb1:</label>
+					<div class="col-sm-11">
+						<input type="text" class="form-control" name="vb1" id="id_vb1" pleaseholder="vb1" required>
+					</div>	
+				</div>
+				<div class="form-group">
+					<label for="id_vb2" class="col-sm-1 control-label">vb2:</label>
+					<div class="col-sm-11">
+						<input type="text" class="form-control" name="vb2" id="id_vb2" pleaseholder="vb2" required>
+					</div>	
+				</div>
+				<div class="form-group">
+					<label for="id_desc" class="col-sm-1 control-label">desc:</label>
+					<div class="col-sm-11">
+						<textarea class="form-control" rows="5" placeholder="descripe" required name="desc" id="id_desc"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-1 control-label" for="id_img">img:</label>
+					<div class="col-sm-11">
+						<input type="file" name="img" id="id_img" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
 					<div class="col-sm-2 col-sm-offset-5">
-						<button class="btn btn btn-primary btn-block" type="submit">回复</button>
+						<button class="btn btn btn-primary btn-block" type="submit">add</button>
 					</div>
 				</div>
 			</form>
