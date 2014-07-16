@@ -14,7 +14,7 @@
 		{% elif status == 'success' %}
 			<div class="well">
 				<h2 class="text-success text-center">add succeed</h2>
-				<a href="/alldish/" type="buttom" class="btn btn-link">Return to all dish</a>
+				<a href="/dishes/" type="buttom" class="btn btn-link">Return to all dish</a>
 			</div>
 		{% endif %}
 		{% if can_add %}
@@ -71,6 +71,17 @@
 					<label for="id_desc" class="col-sm-1 control-label">desc:</label>
 					<div class="col-sm-11">
 						<textarea class="form-control" rows="5" placeholder="descripe" required name="desc" id="id_desc"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3 col-sm-offset-1">
+						<input type="checkbox" name="isbreakfast" value="True">breakfast
+					</div>
+					<div class="col-sm-3 col-sm-offset-1">
+						<input type="checkbox" name="islunch" value="True">lunch
+					</div>
+					<div class="col-sm-3 col-sm-offset-1">
+						<input type="checkbox" name="issupper" value="True">supper
 					</div>
 				</div>
 				<div class="form-group">

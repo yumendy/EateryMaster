@@ -121,13 +121,13 @@ def addrestaurant(req):
 	status = ''
 	can_add = True
 	username = req.session.get('username','')
-	schools = School.objects.all()
 	user_list = MyUser.objects.filter(permission = 3)
 	try:
 		user = MyUser.objects.get(user__username = username)
 		if user.permission < 4:
 			status = 'no_permission'
 			can_add = False
+		schools = School.objects.filter(admin = user)
 	except:
 		status = 'no_permission'
 		can_add = False
@@ -212,6 +212,9 @@ def adddish(req):
 						vb1 = post['vb1'], \
 						vb2 = post['vb2'], \
 						desc = post['desc'],\
+						isbreakfast = post.get('isbreakfast',False), \
+						islunch = post.get('islunch',False), \
+						issupper = post.get('issupper',False), \
 						)
 		if req.FILES:
 			uf = ImgForm(post,req.FILES)
@@ -246,7 +249,10 @@ def ave(lst, field, num):
 
 def dishes(req):
 	username = req.session.get('username','')
-	Id = req.GET['id']
+	Id = req.GET.get('id','')
+	if Id == '':
+		dish_list = Dish.objects.all()
+		return render_to_response('alldishes.html',{'username':username,'dish_list':dish_list})
 	dish = Dish.objects.get(pk = Id)
 	assessment_list = Assessment.objects.filter(dish = dish)
 	num_of_ass = len(assessment_list)
@@ -277,3 +283,9 @@ def dishes(req):
 	content = {'username':username,'dish':dish,'assessment_list':assessment_list,'num_of_ass':num_of_ass, \
 				'ave_taste':ave_taste,'ave_service':ave_service,'ave_level':ave_level,'ave_price':ave_price}
 	return render_to_response('dishes.html', content, context_instance = RequestContext(req))
+
+def allassessment(req):
+	username = req.session.get('username','')
+	assessment_list = Assessment.objects.all()
+	dish_list = Dish.objects.all()
+	return render_to_response('allass.html',{'username':username,'assessment_list':assessment_list,'dish_list':dish_list})

@@ -41,6 +41,9 @@ class Dish(models.Model):
 	carbohydrate = models.FloatField() #gram
 	vb1 = models.FloatField() #mg
 	vb2 = models.FloatField() #ug
+	isbreakfast = models.BooleanField()
+	islunch = models.BooleanField()
+	issupper = models.BooleanField()
 	desc = models.CharField(max_length = 500)
 	img = models.ImageField(upload_to= './image/')
 
@@ -89,7 +92,7 @@ class News(models.Model):
 	title = models.CharField(max_length = 64)
 	content = models.CharField(max_length = 512)
 	category = models.ForeignKey(Category)
-	time = models.DateTimeField(auto_now = True)
+	create_datetime = models.DateTimeField(auto_now = True)
 
 	def __unicode__(self):
 		return self.title

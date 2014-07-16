@@ -24,5 +24,6 @@ urlpatterns = patterns('',
     url(r'^canteens/$',views.canteens),
     url(r'^windows/$',views.windows),
     url(r'^dishes/$',views.dishes),
+    url(r'^allassessment/$',views.allassessment),
     url(r'^image/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIAS_PATH}),
 )

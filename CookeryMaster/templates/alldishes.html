@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Alldishes{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="contsiner col-sm-12">
+		<div class="row">
+			<h2 class="text-center">Alldishes</h2>
+		</div>
+	</div>
+
+	<!-- left-->
+	<div class="contsiner col-sm-8">
+		<div class="well">
+			<h3 class="text-center">All Dishes</h3>
+			<div class="row">
+				{% for d in dish_list %}
+					<div class="contsiner col-sm-4">
+						<a href="/dishes/?id={{ d.id }}">
+							<img src="/{{ d.img }}" alt="{{ d.name }}" class="img-rounded" onload="if(this.width>200||this.height>200){this.width>this.height?this.width=200:this.height=200;};">
+							<p class="text-center">{{ d.name }}</p>
+						</a>
+					</div>
+				{% empty %}
+					<h3 class="text-center">Have no dish</h3>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<!-- right -->
+	<div class="container col-sm-4">
+		<div class="well">
+			<h3 class="text-center">high score dishs</h3>
+			<ul class="list-group">
+				{% for d in dish_list %}
+					<!-- TODO: add link to ditial page -->
+					<a class="list-group-item" href="/dishes/?id={{ d.id }}">{{ d.name }}</a>
+				{% empty %}
+					<li class="list-group-item">has no dish</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
