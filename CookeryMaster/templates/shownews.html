@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ news.title }} | 资讯分享 - 食堂达人{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="well" align="center">
+		<div>
+			<h2>{{ news.title }}</h2>
+			<div>[{{ news.category.name }}] by {{ news.user.user.username }} / {{ news.create_datetime|date:"Y-m-d H:i:s" }}</div>
+			<div>{{ news.content }}</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

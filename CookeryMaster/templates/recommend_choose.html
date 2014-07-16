@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}今天吃什么？ - 食堂达人{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="well" align="center">
+		<h2 lang="center">请输入近三天的饮食情况</h2>
+		<hr>
+		<form method="post">
+			{% csrf_token %}
+			<lable for="idlist">直接输入菜品id，用空格隔开：</lable>
+			<input type="text" name="idlist"> 
+			<input type="submit">
+		</form>
+		<div>
+			<h3>参考：菜品id列表</h3>
+			<ul>
+			{% for dish in dishlist %}
+				<li>[{{dish.id}}] {{dish.name}} ({{dish.window.restaurant.school.name}}->{{dish.window.restaurant.name}}{{dish.window.floor}}楼->{{dish.window.name}})</li>
+			{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

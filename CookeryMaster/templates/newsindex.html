@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}资讯分享 - 食堂达人{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="well" align="center">
+		<div>
+			<a href="/news/add/">发表进餐经验</a>
+			{% for cat in catlist %}
+			<h2>{{ cat.name }}</h2>
+			<ol>
+				{% for news in cat.news_set.all %}
+				<!-- TODO: 只显示前几个news -->
+				<li>
+					<a href="/news/show/?id={{news.id}}">{{news.title}}</a>
+					{{news.user.user.username}} / {{ news.create_datetime|date:"Y-m-d H:i:s" }}
+				</li>
+				{% endfor %}
+			</ol>
+			{%endfor%}
+		</div>
+	</div>
+</div>
+
+{% endblock %}

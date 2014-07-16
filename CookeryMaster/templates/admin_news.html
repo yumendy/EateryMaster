@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{% if category %}{% ifequal category 'announcement' %}公告{% else %}{{category}}{% endifequal %}{% else %}资讯{% endif %}管理 - 食堂达人{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="well" align="center">
+		<h2 lang="center">所有{% if category %}{% ifequal category '食堂资讯' %}公告{% else %}{{category}}{% endifequal %}{% else %}资讯{% endif %}</h2>
+		<hr>
+		<div>
+			<ol>
+				{% for news in newslist %}
+				<li>
+					<a href="/user/?id={{news.user.user.id}}"{{ news.user.user.username }}</a> <small>{{ news.create_datetime|date:"Y-m-d H:i:s" }}</small>
+					<a href="/news/show/?id={{news.id}}">{{news.title}}</a>
+					<a href="/news/edit/?id={{news.id}}">编辑</a>
+					<a href="/news/del/?id={{news.id}}">删除</a>
+				</li>
+				{%endfor%}
+			</ol>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -39,10 +39,13 @@ class Dish(models.Model):
 	energy = models.FloatField() #kcal
 	fat = models.FloatField() #gram
 	carbohydrate = models.FloatField() #gram
-	vb1 = models.FloatField() #mg
-	vb2 = models.FloatField() #ug
+	vb1 = models.FloatField() #mg (A, ug)
+	vb2 = models.FloatField() #ug (C, mg)
 	desc = models.CharField(max_length = 500)
 	img = models.ImageField(upload_to= './image/')
+	isbreakfast = models.BooleanField()
+	islunch = models.BooleanField()
+	issupper = models.BooleanField()
 
 	def __unicode__(self):
 		return self.name
@@ -73,23 +76,23 @@ class Assessment(models.Model):
 	level = models.IntegerField()
 	dish = models.ForeignKey(Dish)
 	user = models.ForeignKey(MyUser)
-	create_datetime = models.DateTimeField()
+	create_datetime = models.DateTimeField(auto_now = True)
 
 	def __unicode__(self):
 		return self.content
+
+class Category(models.Model):
+	name = models.CharField(max_length = 32)
+    
+	def __unicode__(self):
+		return self.name
 
 class News(models.Model):
 	user = models.ForeignKey(MyUser)
 	title = models.CharField(max_length = 64)
 	content = models.CharField(max_length = 512)
 	category = models.ForeignKey(Category)
-	time = models.DateTimeField(auto_now = True)
+	create_datetime = models.DateTimeField(auto_now = True)
 
 	def __unicode__(self):
 		return self.title
-
-class Category(models.Model):
-	name = models.CharField(max_length = 32)
-
-	def __unicode__(self):
-		return self.name

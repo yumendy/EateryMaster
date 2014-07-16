@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}后台管理 - 食堂达人{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="well" align="center">
+		<h2 lang="center">后台管理</h2>
+		<hr>
+		{% if permission > 2 %}
+		<div>
+			<h3>资讯管理</h3>
+			<ul>
+				<li><a href="/admin/news/?act=show">资讯列表</a></li>
+				<li><a href="/admin/news/?act=show&category=食堂资讯">公告列表</a></li>
+				<li><a href="/news/addanno/">发布公告</a></li>
+			</ul>
+		</div>
+		{% endif %}
+		<div>
+			<h3>菜品管理</h3>
+			<ul>
+				<li><a href="/dishes/">菜品列表</a></li>
+				<li><a href="/admin/dish/add/">添加菜品</a></li>
+			</ul>
+		</div>
+		{% if permission > 2 %}
+		<div>
+			<h3>窗口管理</h3>
+			<ul>
+				<li><a href="/windows/">窗口列表</a></li>
+				<li><a href="/admin/window/add/">添加窗口</a></li>
+			</ul>
+		</div>
+		{% endif %}
+		{% if permission > 3 %}
+		<div>
+			<h3>食堂管理</h3>
+			<ul>
+				<li><a href="/restaurants/">食堂列表</a></li>
+				<li><a href="/admin/restaurant/add/">添加食堂</a></li>
+			</ul>
+		</div>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}

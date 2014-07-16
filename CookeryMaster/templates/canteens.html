@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}{{ restaurant.name }}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="contsiner col-sm-12">
+		<div class="row">
+			<h2 class="text-center">{{ restaurant.name }}</h2>
+		</div>
+	</div>
+
+	<!-- left-->
+	<div class="contsiner col-sm-8">
+		<div class="row">
+		{% for w in window_list %}
+			<div class="well">
+				<h3 class="text-center"><a href="/windows/?id={{ w.id }}">{{ w.name }}</a></h3>
+				<div class="row">
+						{% for d in w.dish_set.all %}
+							<div class="contsiner col-sm-4">
+								<img src="/{{ d.img }}" alt="{{ d.name }}" class="img-rounded" onload="if(this.width>200||this.height>200){this.width>this.height?this.width=200:this.height=200;};">
+								<p class="text-center">{{ d.name }}</p>
+							</div>
+						{% empty %}
+							<h3 class="text-center">Have no dish</h3>
+						{% endfor %}
+				</div>
+			</div>
+		{% empty %}
+			<div class="well">
+				<h3 class="text-center">Have no window</h3>
+			</div>
+		{% endfor %}
+		</div>
+	</div>
+	<!-- right -->
+	<div class="container col-sm-4">
+		<div class="well">
+			<h2 class="text-center">Admin</h2>
+			<h3 class="text-center text-info">{{ restaurant.admin.user.username }}</h3>
+		</div>
+		<div class="well">
+			<h3 class="text-center">high score windows</h3>
+			{% for w in window_list %}
+				<ul class="list-group">
+					<!-- TODO: add link to ditial page -->
+					<a href="/windows/?id={{ w.id }}" class="list-group-item">{{ w.name }}</a>
+				</ul>
+			{% empty %}
+				<ul class="list-group">
+					<li class="list-group-item">has no dish</li>
+				</ul>
+			{% endfor %}
+		</div>
+		<div class="well">
+			<h3 class="text-center">high score dishs</h3>
+			{% for w in window_list %}
+				<ul class="list-group">
+					<h4 class="list-group-item-heading">{{ w.name }}</h4>
+					{% for d in w.dish_set.all %}
+						<!-- TODO: add link to ditial page -->
+						<a class="list-group-item" href="/dishes/?id={{ d.id }}">{{ d.name }}</a>
+					{% empty %}
+						<li class="list-group-item">has no dish</li>
+					{% endfor %}
+				</ul>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}

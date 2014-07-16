@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}{{ window.name }}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="contsiner col-sm-12">
+		<div class="row">
+			<h2 class="text-center">{{ window.name }}</h2>
+		</div>
+	</div>
+
+	<!-- left-->
+	<div class="contsiner col-sm-8">
+		<ol class="breadcrumb">
+			<li>location:&nbsp;&nbsp;{{ window.restaurant.school.name }}</li>
+			<li><a href="/canteens/?id={{ window.restaurant.id }}">{{ window.restaurant.name }}</a></li>
+			<li>{{ window.floor }}</li>
+			<li class="active">{{ window.name }}</li>
+		</ol>
+		<div class="well">
+			<h3 class="text-center">All Dishes</h3>
+			<div class="row">
+				{% for d in dish_list %}
+					<div class="contsiner col-sm-4">
+						<a href="/dishes/?id={{ d.id }}">
+							<img src="/{{ d.img }}" alt="{{ d.name }}" class="img-rounded" onload="if(this.width>200||this.height>200){this.width>this.height?this.width=200:this.height=200;};">
+							<p class="text-center">{{ d.name }}</p>
+						</a>
+					</div>
+				{% empty %}
+					<h3 class="text-center">Have no dish</h3>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<!-- right -->
+	<div class="container col-sm-4">
+		<div class="well">
+			<h2 class="text-center">Admin</h2>
+			<h3 class="text-center text-info">{{ window.admin.user.username }}</h3>
+		</div>
+		<div class="well">
+			<h3 class="text-center">high score dishs</h3>
+			<ul class="list-group">
+				{% for d in dish_list %}
+					<!-- TODO: add link to ditial page -->
+					<a class="list-group-item" href="/dishes/?id={{ d.id }}">{{ d.name }}</a>
+				{% empty %}
+					<li class="list-group-item">has no dish</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

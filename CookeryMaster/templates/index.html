@@ -53,16 +53,14 @@
 			<div class="well">
 				<h3>最新点评</h3>
 				<div class="list-group">
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">评论标题</h4>
-						<p class="list-group-item-text">评论内容</p>
+					{% for a in assessment_list %}
+					<a href="/dishes/?id={{ a.dish.id }}#id_for_index_{{ a.id }}" class="list-group-item">
+						<h4 class="list-group-item-heading">{{ a.dish.window.restaurant.name }}->{{ a.dish.window.name }}->{{ a.dish.name }}</h4>
+						<p class="list-group-item-text">{{ a.content }}</p>
 					</a>
-				</div>
-				<div class="list-group">
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">评论标题</h4>
-						<p class="list-group-item-text">评论内容</p>
-					</a>
+					{% empty %}
+						<li class="list-group-item">Has no assessment</li>
+					{% endfor %}
 				</div>
 			</div>
 		</div>
@@ -71,19 +69,19 @@
 	<div class="container col-sm-4">
 		<div class="well">
 			<h4 class="text-center">食堂公告</h5>
-			<ul class="list-group">
-				<li>天香食堂2014年07月13日举行食品展销会！</li>
-				<li>暑假期间营业通知</li>
+			<ul class="list-unstyled">
+				{% for anno in announcement_cat.news_set.all %}
+				<li><a href="/news/show/?id={{anno.id}}">{{anno.title}}</a></li>
+				{% endfor %}
 			</ul>
-			<h5 class="text-right"><a href="#">更多...</a></h5>
+			<h5 class="text-right"><a href="/news/">更多...</a></h5>
 		</div>
 		<div class="well">
 			{% for school in school_list %}
 				<ul class="list-group">
 					<h4 class="list-group-item-heading">{{ school.name }}</h4>
 					{% for rest in school.restaurant_set.all %}
-						<!-- TODO: add link to ditial page -->
-						<li class="list-group-item">{{ rest.name }}</li>
+						<a href="/canteens/?id={{ rest.id }}" class="list-group-item">{{ rest.name }}</a>
 					{% empty %}
 						<li class="list-group-item">has no restaurant</li>
 					{% endfor %}

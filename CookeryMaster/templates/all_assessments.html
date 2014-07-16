@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}所有点评 - 食堂达人{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="well" align="center">
+		<h2 lang="center">所有点评</h2>
+		<hr>
+		<div>
+			<ol>
+				{% for assessment in assessments %}
+				<li><a href="/user/?id={{assessment.user.user.id}}"{{ assessment.user.user.username }}</a> <small>{{ assessment.create_datetime|date:"Y-m-d H:i:s" }}</small>
+				<a href="/dishes/?id={{assessment.dish.id}}">{{assessment.dish.name}}</a>
+				{{assessment.level}}星</li>
+				{%endfor%}
+			</ol>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

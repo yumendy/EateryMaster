@@ -23,17 +23,19 @@
 			<div class="collapse navbar-collapse navbar-example" id="id_navbar">
 				<ul class="nav navbar-nav">
 		            <li><a href="/">主页</a></li>
-		            <li><a href="#">经验</a></li>
-		            <li><a href="#">点评</a></li>
-		            {% if username %}
-		            	<li><a href="#">推荐</a></li>
-		            {% endif %}
-		            <li><a href="/guestbook/">留言板</a></li>
+		            <li><a href="/news/">资讯分享</a></li>
+		            <li><a href="/assessments/">点评</a></li>
+		            <li><a href="/recommend/">今天吃什么？</a></li>
+		            <li><a href="/guestbook/">我要留言</a></li>
 		            <li><a href="/about/">关于</a></li>
 	        	</ul>
 				<ul class="nav navbar-nav navbar-right" style="margin-right:50px;">
 					{% if username %}
 						<li><p class="navbar-text">欢迎&nbsp; <span style="color:white">{{username}}</span></p></li>
+						<li><a href="/user/?id={{userid}}">个人中心</a></li>
+						{% if isadmin %}
+							<li><a href="/admin/">后台管理</a></li>
+						{% endif %}
 						<li><a href="/logout/">登出</a></li>
 					{% else %}
 						<li><a href="/signup/">注册</a></li>
@@ -47,7 +49,7 @@
 		{% if not noheader %}
 		<header class="jumbotron subhead" id="overview" style="background-color:#000;color:#fff;">
 			<div class="container">
-				<h1>HIT 食堂达人</h1>
+				<h1>食堂达人</h1>
 				<p>&emsp;&emsp;我们的食堂我们做主！</p>
 			</div>
 		</header>
