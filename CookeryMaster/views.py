@@ -15,7 +15,8 @@ class ImgForm(forms.Form):
 def index(req):
 	username = req.session.get('username','')
 	school_list = School.objects.all()
-	content = {'username':username,'school_list':school_list}
+	assessment_list = Assessment.objects.all()
+	content = {'username':username,'school_list':school_list,'assessment_list':assessment_list}
 	return render_to_response('index.html',content,context_instance = RequestContext(req))
 
 def signup(req):
@@ -174,7 +175,8 @@ def addwindow(req):
 							)
 		new_window.save()
 		status = 'success'
-	content = {'username':username,'noheader':True,'status':status,'can_add':can_add,'user_list':user_list,'restaurant_list':restaurant_list}
+	content = {'username':username,'noheader':True,'status':status,'can_add':can_add,'user_list':user_list, \
+				'restaurant_list':restaurant_list}
 	return render_to_response('addwindow.html',content,context_instance = RequestContext(req))
 
 
@@ -219,3 +221,59 @@ def adddish(req):
 		status = 'success'
 	content = {'username':username,'noheader':True,'status':status,'can_add':can_add,'window_list':window_list}
 	return render_to_response('adddish.html',content,context_instance = RequestContext(req))
+
+def canteens(req):
+	username = req.session.get('username','')
+	Id = req.GET['id']
+	restaurant = Restaurant.objects.get(pk = Id)
+	window_list = Window.objects.filter(restaurant = restaurant)
+	content = {'username':username,'window_list':window_list,'restaurant':restaurant}
+	return render_to_response('canteens.html',content)
+
+def windows(req):
+	username = req.session.get('username','')
+	Id = req.GET['id']
+	window = Window.objects.get(pk = Id)
+	dish_list = Dish.objects.filter(window = window)
+	content = {'username':username,'dish_list':dish_list,'window':window}
+	return render_to_response('windows.html',content)
+
+def ave(lst, field, num):
+	Sum = 0
+	for item in lst:
+		Sum += item.field
+	return Sum * 1.0 / num
+
+def dishes(req):
+	username = req.session.get('username','')
+	Id = req.GET['id']
+	dish = Dish.objects.get(pk = Id)
+	assessment_list = Assessment.objects.filter(dish = dish)
+	num_of_ass = len(assessment_list)
+	ave_taste = ave_service = ave_price = ave_level = 0
+	if num_of_ass > 0:
+		for item in assessment_list:
+			ave_taste += item.taste
+			ave_level += item.level
+			ave_service += item.service
+			ave_price += item.price
+		ave_price /= num_of_ass
+		ave_service /= num_of_ass
+		ave_level /= num_of_ass
+		ave_taste /= num_of_ass
+	if req.POST:
+		post = req.POST
+		new_ass = Assessment( \
+								taste = post['taste'], \
+								service = post['service'], \
+								price = post['price'], \
+								level = post['level'], \
+								dish = dish, \
+								content = post['content'], \
+								user = MyUser.objects.filter(user__username = username)[0], \
+								)
+		new_ass.save()
+		return HttpResponseRedirect('/dishes/?id=' + str(Id))
+	content = {'username':username,'dish':dish,'assessment_list':assessment_list,'num_of_ass':num_of_ass, \
+				'ave_taste':ave_taste,'ave_service':ave_service,'ave_level':ave_level,'ave_price':ave_price}
+	return render_to_response('dishes.html', content, context_instance = RequestContext(req))

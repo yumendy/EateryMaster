@@ -73,7 +73,7 @@ class Assessment(models.Model):
 	level = models.IntegerField()
 	dish = models.ForeignKey(Dish)
 	user = models.ForeignKey(MyUser)
-	create_datetime = models.DateTimeField()
+	create_datetime = models.DateTimeField(auto_now = True)
 
 	def __unicode__(self):
 		return self.content

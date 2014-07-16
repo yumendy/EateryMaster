@@ -21,5 +21,8 @@ urlpatterns = patterns('',
     url(r'^addrestaurant/$',views.addrestaurant),
     url(r'^addwindow/$',views.addwindow),
     url(r'^adddish/$',views.adddish),
+    url(r'^canteens/$',views.canteens),
+    url(r'^windows/$',views.windows),
+    url(r'^dishes/$',views.dishes),
     url(r'^image/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIAS_PATH}),
 )
