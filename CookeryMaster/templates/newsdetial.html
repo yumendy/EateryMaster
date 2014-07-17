@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ news.title }}{% endblock %}
+
+{% block content %}
+
+<h2 class="text-center">{{ news.title }}</h2>
+<div class="row col-sm-8 col-sm-offset-2">
+	<div class="well">
+		<p>{{ news.content }}</p>
+	</div>
+</div>
+
+{% endblock %}

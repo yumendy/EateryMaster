@@ -8,7 +8,7 @@
 	<div class="well">
 		<h1 >留言板</h1>
 		{% for message in message_list %}
-			<div class="panel panel-default">
+			<div class="panel panel-default" id="id_for_index_{{ m.id }}">
 				<!-- Default panel contents -->
 				<div class="panel-heading">{{ message.title }}</div>
 				<div class="panel-body">

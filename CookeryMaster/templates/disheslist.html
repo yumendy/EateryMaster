@@ -1,0 +1,27 @@
+{% extends "userpanel.html" %}
+
+{% block title %}All Dishes{% endblock %}
+
+{% block content %}
+
+<div class="row">
+	<h1 class="sub-header text-center">All Dishes</h1>
+</div>
+<div class="row col-sm-10 col-sm-offset-1">
+	<div class="well">
+		{% for w in window_list %}
+			<ul class="list-group">
+				<h4 class="list-group-item-heading text-cneter">{{ w.name }}</h4>
+				{% for d in w.dish_set.all %}
+					<a href="/dishes/?id={{ d.id }}" class="list-group-item">{{ d.name }}</a>
+				{% empty %}
+					<li class="list-group-item">Have no dishes!</li>
+				{% endfor %}
+			</ul>
+		{% empty %}
+			<h4 class="text-center">Have no dishes!</h4>
+		{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

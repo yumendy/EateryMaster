@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}今天吃什么？ - 食堂达人{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="well" align="center">
+		<h2 lang="center">推荐饮食如下</h2>
+		<hr>
+		<div>
+			早饭：{{result.0.0}} {{result.1.0}} {{result.2.0}}
+			午饭：{{result.0.1}} {{result.1.1}} {{result.2.1}}
+			晚饭：{{result.0.2}} {{result.1.2}} {{result.2.2}}
+		</div>
+		<div>
+			<h3>参考：菜品id列表</h3>
+			<ul>
+			{% for dish in dishlist %}
+				<li>[{{dish.id}}] {{dish.name}} ({{dish.window.restaurant.school.name}}->{{dish.window.restaurant.name}}{{dish.window.floor}}楼->{{dish.window.name}})</li>
+			{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

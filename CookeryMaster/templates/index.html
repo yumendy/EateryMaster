@@ -70,10 +70,11 @@
 		<div class="well">
 			<h4 class="text-center">食堂公告</h5>
 			<ul class="list-unstyled">
-				<li>天香食堂2014年07月13日举行食品展销会！</li>
-				<li>暑假期间营业通知</li>
+				{% for anno in announcement_cat.news_set.all %}
+				<li><a href="news/ditail/?id={{anno.id}}">{{anno.title}}</a></li>
+				{% endfor %}
 			</ul>
-			<h5 class="text-right"><a href="#">更多...</a></h5>
+			<h5 class="text-right"><a href="/news/">更多...</a></h5>
 		</div>
 		<div class="well">
 			{% for school in school_list %}
