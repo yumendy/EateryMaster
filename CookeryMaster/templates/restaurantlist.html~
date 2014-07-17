@@ -1,11 +1,11 @@
 {% extends "userpanel.html" %}
 
-{% block title %}所有食堂{% endblock %}
+{% block title %}All Restaurant{% endblock %}
 
 {% block content %}
 
 <div class="row">
-	<h1 class="sub-header text-center">所有食堂</h1>
+	<h1 class="sub-header text-center">All Restaurant</h1>
 </div>
 <div class="row col-sm-10 col-sm-offset-1">
 	<div class="well">
@@ -15,11 +15,11 @@
 				{% for r in s.restaurant_set.all %}
 					<a href="/canteens/?id={{ r.id }}" class="list-group-item">{{ r.name }}</a>
 				{% empty %}
-					<li class="list-group-item">暂无食堂!</li>
+					<li class="list-group-item">Have no restaurants!</li>
 				{% endfor %}
 			</ul>
 		{% empty %}
-			<h4 class="text-center">暂无食堂!</h4>
+			<h4 class="text-center">Have no restaurants!</h4>
 		{% endfor %}
 	</div>
 </div>

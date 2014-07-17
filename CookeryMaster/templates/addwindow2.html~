@@ -1,41 +1,41 @@
 {% extends "userpanel.html" %}
 
-{% block title %}添加窗口{% endblock %}
+{% block title %}Add Windows{% endblock %}
 
 {% block content %}
 
 <div class="row">
-	<h1 class="sub-header text-center">添加窗口</h1>
+	<h1 class="sub-header text-center">Add Windows</h1>
 </div>
 <div class="row" >
 	<div class="col-sm-8 col-sm-offset-2">
 		{% if status == 'no_permission' %}
 			<div class="well">
-				<h2 class="text-danger text-center">你没有添加窗口的权限！</h2>
+				<h2 class="text-danger text-center">you have no permission to add window</h2>
 			</div>
 		{% elif status == 'success' %}
 			<div class="well">
-				<h2 class="text-success text-center">添加成功</h2>
+				<h2 class="text-success text-center">add succeed</h2>
 			</div>
 		{% endif %}
 		{% if can_add %}
 			<form role="form" class="form-horizontal" method="post">
 				{% csrf_token %}
 				<div class="form-group">
-					<label for="id_name" class="col-sm-2 control-label">名称:</label>
-					<div class="col-sm-10">
+					<label for="id_name" class="col-sm-1 control-label">name:</label>
+					<div class="col-sm-11">
 						<input type="text" class="form-control" name="name" id="id_name" pleaseholder="name" required autofocus>
 					</div>	
 				</div>
 				<div class="form-group">
-					<label for="id_floor" class="col-sm-2 control-label">所在楼层:</label>
-					<div class="col-sm-10">
+					<label for="id_floor" class="col-sm-1 control-label">floor:</label>
+					<div class="col-sm-11">
 						<input type="text" class="form-control" name="floor" id="id_floor" pleaseholder="floor" required>
 					</div>	
 				</div>
 				<div class="form-group">
-					<label for="id_restaurant" class="col-sm-2 control-label">所在食堂:</label>
-					<div class="col-sm-10">
+					<label for="id_restaurant" class="col-sm-1 control-label">restaurant:</label>
+					<div class="col-sm-11">
 						<select class="form-control" name="restaurant" id="id_restaurant">
 							{% for r in restaurant_list %}
 								<option value="{{ r.id }}">{{ r.name }}</option>
@@ -44,8 +44,8 @@
 					</div>	
 				</div>
 				<div class="form-group">
-					<label for="id_admin" class="col-sm-2 control-label">负责人:</label>
-					<div class="col-sm-10">
+					<label for="id_admin" class="col-sm-1 control-label">admin:</label>
+					<div class="col-sm-11">
 						<select class="form-control" name="admin" id="id_admin">
 							{% for a in user_list %}
 								<option value="{{ a.id }}">{{ a.user.username }}</option>
@@ -55,7 +55,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-2 col-sm-offset-5">
-						<button class="btn btn btn-primary btn-block" type="submit">添加</button>
+						<button class="btn btn btn-primary btn-block" type="submit">add</button>
 					</div>
 				</div>
 			</form>

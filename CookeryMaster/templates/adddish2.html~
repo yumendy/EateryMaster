@@ -11,27 +11,26 @@
 	<div class="col-sm-8 col-sm-offset-2">
 		{% if status == 'no_permission' %}
 			<div class="well">
-				<h2 class="text-danger text-center">你没有添加菜品的权限</h2>
+				<h2 class="text-danger text-center">you have no permission to add dish</h2>
 			</div>
 		{% elif status == 'success' %}
 			<div class="well">
-				<h2 class="text-success text-center">添加成功</h2>
-				<a href="/dishes/" type="buttom" class="btn btn-link">返回所有菜品</a>
+				<h2 class="text-success text-center">add succeed</h2>
+				<a href="/dishes/" type="buttom" class="btn btn-link">Return to all dish</a>
 			</div>
 		{% endif %}
 		{% if can_add %}
 			<form role="form" class="form-horizontal" method="post" enctype="multipart/form-data">
 				{% csrf_token %}
-				<h2 class="form-signin-heading" align="center">添加菜品</h2>
 				<div class="form-group">
-					<label for="id_name" class="col-sm-2 control-label">菜品名称:</label>
-					<div class="col-sm-10">
+					<label for="id_name" class="col-sm-1 control-label">name:</label>
+					<div class="col-sm-11">
 						<input type="text" class="form-control" name="name" id="id_name" pleaseholder="name" required autofocus>
 					</div>	
 				</div>
 				<div class="form-group">
-					<label for="id_window" class="col-sm-2 control-label">供应窗口:</label>
-					<div class="col-sm-10">
+					<label for="id_window" class="col-sm-1 control-label">window:</label>
+					<div class="col-sm-11">
 						<select class="form-control" name="window" id="id_window">
 							{% for w in window_list %}
 								<option value="{{ w.id }}">{{ w.name }}</option>
@@ -40,61 +39,61 @@
 					</div>	
 				</div>
 				<div class="form-group">
-					<label for="id_energy" class="col-sm-2 control-label">能量:</label>
-					<div class="col-sm-10">
+					<label for="id_energy" class="col-sm-1 control-label">energy:</label>
+					<div class="col-sm-11">
 						<input type="text" class="form-control" name="energy" id="id_energy" pleaseholder="energy" required>
 					</div>	
 				</div>
 				<div class="form-group">
-					<label for="id_fat" class="col-sm-2 control-label">脂肪:</label>
-					<div class="col-sm-10">
+					<label for="id_fat" class="col-sm-1 control-label">fat:</label>
+					<div class="col-sm-11">
 						<input type="text" class="form-control" name="fat" id="id_fat" pleaseholder="fat" required>
 					</div>	
 				</div>
 				<div class="form-group">
-					<label for="id_carbohydrate" class="col-sm-2 control-label">碳水化合物:</label>
-					<div class="col-sm-10">
+					<label for="id_carbohydrate" class="col-sm-1 control-label">carbohydrate:</label>
+					<div class="col-sm-11">
 						<input type="text" class="form-control" name="carbohydrate" id="id_carbohydrate" pleaseholder="carbohydrate" required>
 					</div>	
 				</div>
 				<div class="form-group">
-					<label for="id_vb1" class="col-sm-2 control-label">维生素A:</label>
-					<div class="col-sm-10">
+					<label for="id_vb1" class="col-sm-1 control-label">vb1:</label>
+					<div class="col-sm-11">
 						<input type="text" class="form-control" name="vb1" id="id_vb1" pleaseholder="vb1" required>
 					</div>	
 				</div>
 				<div class="form-group">
-					<label for="id_vb2" class="col-sm-2 control-label">维生素C:</label>
-					<div class="col-sm-10">
+					<label for="id_vb2" class="col-sm-1 control-label">vb2:</label>
+					<div class="col-sm-11">
 						<input type="text" class="form-control" name="vb2" id="id_vb2" pleaseholder="vb2" required>
 					</div>	
 				</div>
 				<div class="form-group">
-					<label for="id_desc" class="col-sm-2 control-label">菜品描述:</label>
-					<div class="col-sm-10">
+					<label for="id_desc" class="col-sm-1 control-label">desc:</label>
+					<div class="col-sm-11">
 						<textarea class="form-control" rows="5" placeholder="descripe" required name="desc" id="id_desc"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-3 col-sm-offset-1">
-						<input type="checkbox" name="isbreakfast" value="True">早餐
+						<input type="checkbox" name="isbreakfast" value="True">breakfast
 					</div>
 					<div class="col-sm-3 col-sm-offset-1">
-						<input type="checkbox" name="islunch" value="True">午餐
+						<input type="checkbox" name="islunch" value="True">lunch
 					</div>
 					<div class="col-sm-3 col-sm-offset-1">
-						<input type="checkbox" name="issupper" value="True">晚餐
+						<input type="checkbox" name="issupper" value="True">supper
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="id_img">菜品图片:</label>
-					<div class="col-sm-10">
+					<label class="col-sm-1 control-label" for="id_img">img:</label>
+					<div class="col-sm-11">
 						<input type="file" name="img" id="id_img" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-2 col-sm-offset-5">
-						<button class="btn btn btn-primary btn-block" type="submit">添加</button>
+						<button class="btn btn btn-primary btn-block" type="submit">add</button>
 					</div>
 				</div>
 			</form>

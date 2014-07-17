@@ -74,7 +74,7 @@
 				<li><a href="news/ditail/?id={{anno.id}}">{{anno.title}}</a></li>
 				{% endfor %}
 			</ul>
-			<h5 class="text-right"><a href="/news/index/">更多...</a></h5>
+			<h5 class="text-right"><a href="/news/">更多...</a></h5>
 		</div>
 		<div class="well">
 			{% for school in school_list %}

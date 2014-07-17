@@ -1,6 +1,6 @@
 {% extends "userpanel.html" %}
 
-{% block title %}所有菜品{% endblock %}
+{% block title %}All Dishes{% endblock %}
 
 {% block content %}
 

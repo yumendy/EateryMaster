@@ -23,12 +23,12 @@
 			<div class="collapse navbar-collapse navbar-example" id="id_navbar">
 				<ul class="nav navbar-nav">
 		            <li id="homepage"><a href="/">主页</a></li>
-		            <li id="zixun"><a href="/news/index/">资讯分享</a></li>
+		            <li id="zixun"><a href="/news/index/">经验</a></li>
 		            <li id="ass"><a href="/allassessment/">点评</a></li>
 		            {% if username %}
-		            	<li id="recom"><a href="/recommend/">今天吃什么</a></li>
+		            	<li id="recom"><a href="/recommend/">推荐</a></li>
 		            {% endif %}
-		            <li id="gust"><a href="/guestbook/">我要留言</a></li>
+		            <li id="gust"><a href="/guestbook/">留言板</a></li>
 		            <li id="about"><a href="/about/">关于</a></li>
 	        	</ul>
 				<ul class="nav navbar-nav navbar-right" style="margin-right:50px;">

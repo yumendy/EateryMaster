@@ -75,7 +75,7 @@
 					</div>
 				</div>
 				{% empty %}
-					<li class="list-group-item text-center">暂无点评</li>
+					<li class="list-group-item text-center">has no assessment</li>
 				{% endfor %}
 			</div>
 		</div>
@@ -84,21 +84,21 @@
 			<form method="post" role="form" class="form-horizontal">
 				{% csrf_token %}
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="id_taste">口味:</label>
+					<label class="control-label col-sm-2" for="id_taste">taste:</label>
 					<div class="col-sm-4">
 						<input class="form-control" type="range" min="1" max="5" name="taste" id="id_taste">
 					</div>
-					<label class="control-label col-sm-2" for="id_service">服务:</label>
+					<label class="control-label col-sm-2" for="id_service">service:</label>
 					<div class="col-sm-4">
 						<input class="form-control" type="range" min="1" max="5" name="service" id="id_service">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="id_price">性价比:</label>
+					<label class="control-label col-sm-2" for="id_price">price:</label>
 					<div class="col-sm-4">
 						<input class="form-control" type="range" min="1" max="5" name="price" id="id_price">
 					</div>
-					<label class="control-label col-sm-2" for="id_level">推荐度:</label>
+					<label class="control-label col-sm-2" for="id_level">level:</label>
 					<div class="col-sm-4">
 						<input class="form-control" type="range" min="1" max="5" name="level" id="id_level">
 					</div>
@@ -123,7 +123,7 @@
 	<!-- right -->
 	<div class="container col-sm-4">
 		<div class="well">
-			<h3 class="text-center">此窗口的其他菜品</h3>
+			<h3 class="text-center">other dishes in this window</h3>
 			<div class="list-group" align="center">
 				{% for d in dish.window.dish_set.all %}
 					<a href="/dishes/?id={{ d.id }}" class="list-group-item">
@@ -131,7 +131,7 @@
 						<p class="text-center">{{ d.name }}</p>
 					</a>
 				{% empty %}
-					<li class="list-group-item">暂无菜品</li>
+					<li class="list-group-item">has no dish</li>
 				{% endfor %}
 			</div>
 		</div>

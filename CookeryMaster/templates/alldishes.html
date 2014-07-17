@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Alldishes{% endblock %}
+{% block title %}所有菜品{% endblock %}
 
 {% block content %}
 
 <div class="container">
 	<div class="contsiner col-sm-12">
 		<div class="row">
-			<h2 class="text-center">Alldishes</h2>
+			<h2 class="text-center">所有菜品</h2>
 		</div>
 	</div>
 
 	<!-- left-->
 	<div class="contsiner col-sm-8">
 		<div class="well">
-			<h3 class="text-center">All Dishes</h3>
+			<h3 class="text-center">菜品列表</h3>
 			<div class="row">
 				{% for d in dish_list %}
 					<div class="contsiner col-sm-4">
@@ -24,7 +24,7 @@
 						</a>
 					</div>
 				{% empty %}
-					<h3 class="text-center">Have no dish</h3>
+					<h3 class="text-center">暂无菜品</h3>
 				{% endfor %}
 			</div>
 		</div>
@@ -32,13 +32,12 @@
 	<!-- right -->
 	<div class="container col-sm-4">
 		<div class="well">
-			<h3 class="text-center">high score dishs</h3>
+			<h3 class="text-center">高分菜品</h3>
 			<ul class="list-group">
 				{% for d in dish_list %}
-					<!-- TODO: add link to ditial page -->
 					<a class="list-group-item" href="/dishes/?id={{ d.id }}">{{ d.name }}</a>
 				{% empty %}
-					<li class="list-group-item">has no dish</li>
+					<li class="list-group-item">暂无菜品</li>
 				{% endfor %}
 			</ul>
 		</div>

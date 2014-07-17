@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}所有评论{% endblock %}
+{% block title %}all_ass{% endblock %}
 
 {% block content %}
 
@@ -10,7 +10,7 @@
 	<div class="contsiner col-sm-8">
 		<div class="row">
 			<div class="well">
-				<h3>所有点评</h3>
+				<h3>all点评</h3>
 				<div class="list-group">
 					{% for a in assessment_list %}
 					<a href="/dishes/?id={{ a.dish.id }}#id_for_index_{{ a.id }}" class="list-group-item">
@@ -18,7 +18,7 @@
 						<p class="list-group-item-text">{{ a.content }}</p>
 					</a>
 					{% empty %}
-						<li class="list-group-item">暂无点评</li>
+						<li class="list-group-item">Has no assessment</li>
 					{% endfor %}
 				</div>
 			</div>
@@ -27,12 +27,12 @@
 	<!-- right -->
 	<div class="container col-sm-4">
 		<div class="well">
-			<h3 class="text-center">高分菜品</h3>
+			<h3 class="text-center">high score dishs</h3>
 			<ul class="list-group">
 				{% for d in dish_list %}
 					<a class="list-group-item" href="/dishes/?id={{ d.id }}">{{ d.name }}</a>
 				{% empty %}
-					<li class="list-group-item">暂无菜品</li>
+					<li class="list-group-item">has no dish</li>
 				{% endfor %}
 			</ul>
 		</div>

@@ -7,19 +7,36 @@
 <div class="container">
 	<div class="row col-sm-8 col-sm-offset-2">
 		<div class="row">
-			<h2 class="text-center">请输入近三天的饮食情况</h2>
+			<h2 class="text-center">推荐饮食如下</h2>
 			<h4 class="text-center">直接输入菜品id，用空格隔开：</h4>
 		</div>
 		<div class="row well">
-			<form method="post" role="form">
-				{% csrf_token %}
-				<div class="form-group">
-					<div class="col-sm-8 col-sm-offset-1">
-						<input type="text" name="idlist" id="id_list" class="form-control">
-					</div>
-				</div> 
-				<button type="submit" class="btn btn-info">Submit</button>
-			</form>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>早餐</th>
+						<th>午餐</th>
+						<th>晚餐</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Mark</td>
+						<td>Otto</td>
+						<td>@mdo</td>
+					</tr>
+					<tr>
+						<td>Jacob</td>
+						<td>Thornton</td>
+						<td>@fat</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td colspan="2">Larry the Bird</td>
+						<td>@twitter</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
 		<div>

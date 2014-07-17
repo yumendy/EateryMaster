@@ -24,13 +24,13 @@
 								<p class="text-center">{{ d.name }}</p>
 							</div>
 						{% empty %}
-							<h3 class="text-center">暂无菜品</h3>
+							<h3 class="text-center">Have no dish</h3>
 						{% endfor %}
 				</div>
 			</div>
 		{% empty %}
 			<div class="well">
-				<h3 class="text-center">暂无窗口</h3>
+				<h3 class="text-center">Have no window</h3>
 			</div>
 		{% endfor %}
 		</div>
@@ -38,28 +38,28 @@
 	<!-- right -->
 	<div class="container col-sm-4">
 		<div class="well">
-			<h2 class="text-center">负责人</h2>
+			<h2 class="text-center">Admin</h2>
 			<h3 class="text-center text-info">{{ restaurant.admin.user.username }}</h3>
 		</div>
 		<div class="well">
-			<h3 class="text-center">高分窗口</h3>
+			<h3 class="text-center">high score windows</h3>
 			<ul class="list-group">
 			{% for w in window_list %}
 				<a href="/windows/?id={{ w.id }}" class="list-group-item">{{ w.name }}</a>
 			{% empty %}
-				<li class="list-group-item">暂无菜品</li>
+				<li class="list-group-item">has no dish</li>
 			{% endfor %}
 			</ul>
 		</div>
 		<div class="well">
-			<h3 class="text-center">高分菜品</h3>
+			<h3 class="text-center">high score dishs</h3>
 			{% for w in window_list %}
 				<ul class="list-group">
 					<h4 class="list-group-item-heading">{{ w.name }}</h4>
 					{% for d in w.dish_set.all %}
 						<a class="list-group-item" href="/dishes/?id={{ d.id }}">{{ d.name }}</a>
 					{% empty %}
-						<li class="list-group-item">暂无菜品</li>
+						<li class="list-group-item">has no dish</li>
 					{% endfor %}
 				</ul>
 			{% endfor %}

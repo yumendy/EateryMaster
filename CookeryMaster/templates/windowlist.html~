@@ -1,11 +1,11 @@
 {% extends "userpanel.html" %}
 
-{% block title %}所有窗口{% endblock %}
+{% block title %}All Windows{% endblock %}
 
 {% block content %}
 
 <div class="row">
-	<h1 class="sub-header text-center">所有窗口</h1>
+	<h1 class="sub-header text-center">All Windows</h1>
 </div>
 <div class="row col-sm-10 col-sm-offset-1">
 	<div class="well">
@@ -15,11 +15,11 @@
 				{% for w in r.window_set.all %}
 					<a href="/windows/?id={{ w.id }}" class="list-group-item">{{ w.name }}</a>
 				{% empty %}
-					<li class="list-group-item">暂无窗口!</li>
+					<li class="list-group-item">Have no windows!</li>
 				{% endfor %}
 			</ul>
 		{% empty %}
-			<h4 class="text-center">暂无窗口!</h4>
+			<h4 class="text-center">Have no windows!</h4>
 		{% endfor %}
 	</div>
 </div>

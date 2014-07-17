@@ -23,6 +23,7 @@
 					<div class="panel-heading">{{ message.title }}</div>
 					<div class="panel-body">
 						<h3>{{ message.content }}</h3>
+						<!-- TODO: Add a link to ditaile of the author -->
 						<p class="text-right">{{ message.user.user.username }}&nbsp;&nbsp;<small>{{ message.create_datetime|date:"Y-m-d H:i:s" }}</small></p>
 					</div>
 				</div>

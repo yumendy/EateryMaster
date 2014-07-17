@@ -14,13 +14,13 @@
 	<!-- left-->
 	<div class="contsiner col-sm-8">
 		<ol class="breadcrumb">
-			<li>位置:&nbsp;&nbsp;{{ window.restaurant.school.name }}</li>
+			<li>location:&nbsp;&nbsp;{{ window.restaurant.school.name }}</li>
 			<li><a href="/canteens/?id={{ window.restaurant.id }}">{{ window.restaurant.name }}</a></li>
-			<li>{{ window.floor }}楼</li>
+			<li>{{ window.floor }}</li>
 			<li class="active">{{ window.name }}</li>
 		</ol>
 		<div class="well">
-			<h3 class="text-center">所有菜品</h3>
+			<h3 class="text-center">All Dishes</h3>
 			<div class="row">
 				{% for d in dish_list %}
 					<div class="contsiner col-sm-4">
@@ -30,7 +30,7 @@
 						</a>
 					</div>
 				{% empty %}
-					<h3 class="text-center">暂无菜品</h3>
+					<h3 class="text-center">Have no dish</h3>
 				{% endfor %}
 			</div>
 		</div>
@@ -38,16 +38,17 @@
 	<!-- right -->
 	<div class="container col-sm-4">
 		<div class="well">
-			<h2 class="text-center">负责人</h2>
+			<h2 class="text-center">Admin</h2>
 			<h3 class="text-center text-info">{{ window.admin.user.username }}</h3>
 		</div>
 		<div class="well">
-			<h3 class="text-center">高分菜品</h3>
+			<h3 class="text-center">high score dishs</h3>
 			<ul class="list-group">
 				{% for d in dish_list %}
+					<!-- TODO: add link to ditial page -->
 					<a class="list-group-item" href="/dishes/?id={{ d.id }}">{{ d.name }}</a>
 				{% empty %}
-					<li class="list-group-item">暂无菜品</li>
+					<li class="list-group-item">has no dish</li>
 				{% endfor %}
 			</ul>
 		</div>

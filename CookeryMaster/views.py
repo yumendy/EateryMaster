@@ -478,6 +478,6 @@ def recommend(request):
 		standard = [2700, 70, 360, 500, 100]
 		result = getrecommend(idlist, dishlist, standard)
 		content['result'] = result
-		return render_to_response('recommend_result.html', content)
+		return render_to_response('recommend_result2.html', content)
 
 	return render_to_response('recommend_choose.html', content, context_instance = RequestContext(request))

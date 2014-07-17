@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">用户后台</a>
+                <a class="navbar-brand" href="/">食堂达人</a>
             </div>
             <div class="collapse navbar-collapse navbar-example" id="id_navbar">
                 <ul class="nav navbar-nav navbar-right" style="margin-right:50px;">
@@ -36,34 +36,34 @@
             <div class="row">
                 <div class="col-sm-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        <li id="overview"><a href="/userpanel/overview/#id_for_index_overview">总览</a></li>
-                        <li><a href="/userpanel/overview/#id_for_index_allass">所有点评</a></li>
-                        <li><a href="/userpanel/overview/#id_for_index_allmessage">所有留言</a></li>
+                        <li id="overview"><a href="/userpanel/overview/#id_for_index_overview">Overview</a></li>
+                        <li><a href="/userpanel/overview/#id_for_index_allass">all assessment</a></li>
+                        <li><a href="/userpanel/overview/#id_for_index_allmessage">all message</a></li>
                     </ul>
                     <ul class="nav nav-sidebar">
                         {% for c in category_list %}
                             <li><a href="/userpanel/overview/#id_for_index_category_{{ c.id }}">{{ c.name }}</a></li>
                         {% endfor %}
                         {% if permission > 2 %}
-                            <li id="addanno"><a href="/news/addanno/">发布公告</a></li>
+                            <li id="addanno"><a href="/news/addanno/">add anno</a></li>
                         {% endif %}
                     </ul>
                     {% if permission > 1 %}
                     <ul class="nav nav-sidebar">
-                      <li id="dishlist"><a href="/disheslist/">菜品列表</a></li>
-                      <li id="adddish"><a href="/adddish/">添加菜品</a></li>
+                      <li id="dishlist"><a href="/disheslist/">dish list</a></li>
+                      <li id="adddish"><a href="/adddish/">add dish</a></li>
                     </ul>
                     {% endif %}
                     {% if permission > 2 %}
                     <ul class="nav nav-sidebar">
-                      <li id="winlist"><a href="/windowslist/">窗口列表</a></li>
-                      <li id="addwin"><a href="/addwindow/">添加窗口</a></li>
+                      <li id="winlist"><a href="/windowslist/">window list</a></li>
+                      <li id="addwin"><a href="/addwindow/">add window</a></li>
                     </ul>
                     {% endif %}
                     {% if permission > 3 %}
                     <ul class="nav nav-sidebar">
-                      <li id="restlist"><a href="/restaurantlist/">食堂列表</a></li>
-                      <li id="addrest"><a href="/addrestaurant/">添加食堂</a></li>
+                      <li id="restlist"><a href="/restaurantlist/">restaurant list</a></li>
+                      <li id="addrest"><a href="/addrestaurant/">add restaurant</a></li>
                     </ul>
                     {% endif %}
                 </div>

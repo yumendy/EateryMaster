@@ -9,15 +9,15 @@
 	<div class="col-sm-6 col-sm-offset-3">
 		{% if status == 'success' %}
 			<div class="well">
-				<h2 class="text-success text-center">注册成功！</h2>
+				<h2 class="text-success text-center">Successed!</h2>
 			</div>
 		{% elif status == 're_err' %}
 			<div class="well">
-				<h2 class="text-warning text-center">密码重复错误</h2>
+				<h2 class="text-warning text-center">Repassword is wrong</h2>
 			</div>
 		{% elif status == 'user_exist' %}
 			<div class="well">
-				<h2 class="text-danger text-center">用户已经存在</h2>
+				<h2 class="text-danger text-center">User has exist</h2>
 			</div>
 		{% endif %}
 		<form role="form" class="form-horizontal" method="post">
