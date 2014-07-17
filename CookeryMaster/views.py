@@ -429,7 +429,7 @@ the core code of dishes recommend written by xivid
 """
 
 def getrecommend(idlist, dishlist, std):
-	ret = [[0,0,0],[0,0,0],[0,0,0]]
+	ret = [[1,1,1],[1,1,1],[1,1,1]]
 	day3 = [sum([dishlist[id].energy for id in idlist]), \
 		  sum([dishlist[id].fat for id in idlist]), \
 		  sum([dishlist[id].carbohydrate for id in idlist]), \
@@ -477,6 +477,9 @@ def recommend(request):
 		dishlist = Dish.objects.all()#[Dish.objects.filter(isbreakfast = True), Dish.objects.filter(islunch = True), Dish.objects.filter(issupper = True)]
 		standard = [2700, 70, 360, 500, 100]
 		result = getrecommend(idlist, dishlist, standard)
+		for x in xrange(0, 3):
+			for y in xrange(0,3):
+				result[x][y] = Dish.objects.get(pk = result[x][y])
 		content['result'] = result
 		return render_to_response('recommend_result2.html', content)
 
