@@ -414,7 +414,7 @@ def addnews(req):
 	content = {'username':username,'active_item':"zixun"}
 	return render_to_response('addnews.html',content,context_instance = RequestContext(req))
 
-def newsdital(req):
+def newsdetail(req):
 	username = req.session.get('username','')
 	Id = req.GET['id']
 	try:
@@ -422,7 +422,7 @@ def newsdital(req):
 	except:
 		return HttpResponseRedirect('/news/index/')
 	content = {'username':username,'news':news,'active_item':'zixun'}
-	return render_to_response('newsdetial.html',content)
+	return render_to_response('newsdetail.html',content)
 
 """
 the core code of dishes recommend written by xivid

@@ -34,7 +34,7 @@ urlpatterns = patterns('',
     url(r'^news/addanno/$', views.addanno),
     url(r'^news/index/$',views.newsindex),
     url(r'^news/add/$', views.addnews),
-    url(r'^news/ditail/$', views.newsdital),
+    url(r'^news/detail/$', views.newsdetail),
     url(r'^recommend/$', views.recommend),
     url(r'^image/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIAS_PATH}),
 )

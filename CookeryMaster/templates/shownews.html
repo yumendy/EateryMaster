@@ -6,7 +6,7 @@
 
 <h2 class="text-center">所有资讯</h2>
 <div class="col-sm-1 col-sm-offset-9">
-	<h4 class="text-right"><a href="/news/add/" class="btn btn-primary btn-sm" type="buttom">发表资讯</a></h4>
+	<h4 class="text-right"><a href="/news/add/" class="btn btn-primary btn-sm" type="buttom">发表进餐经验</a></h4>
 </div>
 {% for c in category_list %}
 <div class="row col-sm-10 col-sm-offset-1">
@@ -14,7 +14,7 @@
 		<div class="list-group">
 			<h3 class="list-group-item-heading text-center">所有{{ c.name }}</h3>
 			{% for item in c.news_set.all %}
-			<a href="/news/ditail/?id={{ item.id }}" class="list-group-item">
+			<a href="/news/detail/?id={{ item.id }}" class="list-group-item">
 				<h4 class="list-group-item-heading">{{ item.title }}</h4>
 				<p class="list-group-item-text">{{ item.content }}</p>
 			</a>
